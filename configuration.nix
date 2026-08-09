@@ -49,8 +49,9 @@
   # Enable the X11 windowing system.
   services.xserver = {
     enable = true;
-    windowManager.i3.enable = true;
+    windowManager.i3.enable = true;  
   };
+  services.displayManager.defaultSession = "none+i3";
 
   # Configure keymap in X11
   services.xserver.xkb = {
@@ -70,9 +71,6 @@
     pulse.enable = true;
   };
 
-  # Enable touchpad support (enabled default in most desktopManager).
-  services.libinput.enable = true;
-
   # Define a user account. Don't forget to set a password with ‘passwd’.
   # users.users.alice = {
   #   isNormalUser = true;
@@ -89,6 +87,7 @@
   environment.systemPackages = with pkgs; [
     vim
     pkgs.kitty
+    pkgs.brightnessctl
   ];
 
   # Configure editor
@@ -107,6 +106,9 @@
       init.defaultBranch = "main";
     };
   };
+
+  # Enable natural scrolling
+  services.libinput.touchpad.naturalScrolling = true;
 
   # Some programs need SUID wrappers, can be configured further or are
   # started in user sessions.
