@@ -88,6 +88,7 @@
     vim
     pkgs.kitty
     pkgs.brightnessctl
+    vscodium
   ];
 
   # Configure editor
