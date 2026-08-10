@@ -8,6 +8,7 @@
   imports =
     [ # Include the results of the hardware scan.
       ./hardware-configuration.nix
+      ./temp/de.nix
     ];
 
   # Enable flakes
@@ -45,14 +46,6 @@
     extraGroups = [ "wheel" ];
   };
 
-
-  # Enable the X11 windowing system.
-  services.xserver = {
-    enable = true;
-    windowManager.i3.enable = true;  
-  };
-  services.displayManager.defaultSession = "none+i3";
-
   # Configure keymap in X11
   services.xserver.xkb = {
     layout = "us";
@@ -62,14 +55,6 @@
 
   # Enable CUPS to print documents.
   # services.printing.enable = true;
-
-  # Enable sound.
-  # services.pulseaudio.enable = true;
-  # OR
-  services.pipewire = {
-    enable = true;
-    pulse.enable = true;
-  };
 
   # Define a user account. Don't forget to set a password with ‘passwd’.
   # users.users.alice = {
@@ -86,9 +71,6 @@
   # You can use https://search.nixos.org/ to find more packages (and options).
   environment.systemPackages = with pkgs; [
     vim
-    pkgs.kitty
-    pkgs.brightnessctl
-    vscodium
   ];
 
   # Configure editor
@@ -107,9 +89,6 @@
       init.defaultBranch = "main";
     };
   };
-
-  # Enable natural scrolling
-  services.libinput.touchpad.naturalScrolling = true;
 
   # Some programs need SUID wrappers, can be configured further or are
   # started in user sessions.
@@ -153,6 +132,5 @@
   #
   # For more information, see `man configuration.nix` or https://nixos.org/manual/nixos/stable/options#opt-system.stateVersion .
   system.stateVersion = "26.05"; # Did you read the comment?
-
 }
 
