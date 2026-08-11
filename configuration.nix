@@ -9,6 +9,7 @@
     [ # Include the results of the hardware scan.
       ./hardware-configuration.nix
       ./temp/de.nix
+      ./temp/nvidia.nix
     ];
 
   # Enable flakes
