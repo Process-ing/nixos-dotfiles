@@ -17,9 +17,16 @@
   # Enable flakes
   nix.settings.experimental-features = [ "nix-command" "flakes" ];
 
-  # Use the systemd-boot EFI boot loader.
-  boot.loader.systemd-boot.enable = true;
-  boot.loader.efi.canTouchEfiVariables = true;
+  # Configure GRUB as the bootloader
+  boot.loader = {
+    grub = {
+      enable = true;
+      device = "nodev";  # This only works in UEFI, change later (aka TODO)
+      efiSupport = true;
+    };
+
+    efi.canTouchEfiVariables = true;
+  };
 
   networking.hostName = "brunol-server"; # Define your hostname.
 
