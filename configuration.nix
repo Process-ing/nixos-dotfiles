@@ -9,7 +9,7 @@
     [ # Include the results of the hardware scan.
       ./hardware-configuration.nix
       ./temp/de.nix
-      ./temp/nvidia.nix
+      # ./temp/nvidia.nix
       ./temp/display-conf.nix
     ];
 
