@@ -77,14 +77,14 @@
           eDP-1 = {
             enable = true;
             primary = true;
-            position = "320x1080";
+            position = "0x1080";
             mode = "2560x1600";
             rate = "60.00";
           };
 
           HDMI-1-1 = {
             enable = true;
-            position = "0x0";
+            position = "320x0";
             mode = "1920x1080";
             rate = "60.00";
           };
