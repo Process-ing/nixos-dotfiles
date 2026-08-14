@@ -1,7 +1,5 @@
-{ lib, ... }:
-
 {
-  flake.modules.nixos.brunol-server = { config, modulesPath, ... }:
+  flake.modules.nixos.brunol-server = { lib, config, modulesPath, ... }:
   {
     imports =
       [ (modulesPath + "/installer/scan/not-detected.nix")

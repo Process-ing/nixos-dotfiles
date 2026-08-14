@@ -1,4 +1,5 @@
 { inputs, ... }:
+
 {
   # Setup of components used for the dendritic pattern (flake-parts, flake-file and import-tree)
 
