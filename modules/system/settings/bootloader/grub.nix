@@ -1,5 +1,6 @@
 {
   flake.modules.nixos.grub = {
+
     # Configure GRUB as the bootloader
     boot.loader = {
       grub = {
