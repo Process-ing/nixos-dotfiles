@@ -23,6 +23,7 @@
       enable = true;
       device = "nodev";  # This only works in UEFI, change later (aka TODO)
       efiSupport = true;
+      useOSProber = true;
     };
 
     efi.canTouchEfiVariables = true;
