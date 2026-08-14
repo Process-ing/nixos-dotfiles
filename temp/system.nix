@@ -7,8 +7,7 @@
     rfkillUnblockBluetooth = {
       deps = [];
       text = ''
-        rfkill unblock 0  #hci0
-        rfkill unblock 2  #ideapad_bluetooth
+        rfkill unblock bluetooth
       '';
     };
   };
