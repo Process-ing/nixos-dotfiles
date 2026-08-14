@@ -12,6 +12,7 @@
       # ./temp/nvidia.nix
       ./temp/display-conf.nix
       ./temp/shell.nix
+      ./temp/system.nix
     ];
 
   # Enable flakes
