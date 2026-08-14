@@ -12,7 +12,8 @@
         temp-display-conf
         temp-shell
         temp-system
-        system-base
+
+        system-minimal
     ];
 
     # Configure GRUB as the bootloader
