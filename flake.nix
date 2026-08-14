@@ -3,21 +3,11 @@
 
   inputs = {
     nixpkgs.url = "github:NixOS/nixpkgs/nixos-unstable";
+
     flake-parts.url = "github:hercules-ci/flake-parts";
+    import-tree.url = "github:vic/import-tree";
   };
 
-  outputs = inputs@{ self, nixpkgs, ... }: {
-    nixosConfigurations.brunol-server = nixpkgs.lib.nixosSystem {
-      modules = [
-        ./configuration.nix
-      ];
-    };
-  };
-
-  # outputs = inputs @ { flake-parts, ... }: flake-parts.lib.mkFlake { inherit imputs; } {
-      
-
-  #     systems = [ "x86_64-linux" ];
-  #   }
+  outputs = inputs: inputs.flake-parts.lib.mkFlake { inherit inputs; } (inputs.import-tree ./modules);
 }
 
