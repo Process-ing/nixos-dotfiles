@@ -14,21 +14,8 @@
         temp-system
 
         system-minimal
+        grub
     ];
-
-    # Configure GRUB as the bootloader
-    boot.loader = {
-      grub = {
-        enable = true;
-        device = "nodev";  # This only works in UEFI, change later (aka TODO)
-        efiSupport = true;
-        useOSProber = true;
-      };
-
-      efi.canTouchEfiVariables = true;
-    };
-
-    networking.hostName = "brunol-server"; # Define your hostname.
 
     # Configure network connections interactively with nmcli or nmtui.
     networking.networkmanager.enable = true;
