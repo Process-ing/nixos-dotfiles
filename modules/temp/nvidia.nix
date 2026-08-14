@@ -1,7 +1,5 @@
-{ lib, ... }:
-
 {
-  flake.modules.nixos.temp-nvidia = { pkgs, config, ... }:
+  flake.modules.nixos.temp-nvidia = { config, lib, pkgs, ... }:
   {
     # Allow use of NVIDIA packages as unfree software
     nixpkgs.config.allowUnfreePredicate = pkg: builtins.elem (lib.getName pkg) [
