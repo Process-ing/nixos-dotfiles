@@ -11,11 +11,5 @@
 
         system-desktop
     ];
-
-    # Define users
-    users.users.brunol = {
-      isNormalUser = true;
-      extraGroups = [ "wheel" ];
-    };
   };
 }
