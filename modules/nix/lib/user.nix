@@ -3,25 +3,25 @@
 {
   config.flake.lib = {
     # Creates the base settings for a user
-    mkUser = username: isSudo: {
-      nixos.${username} = { lib, ... }:
+    mkUser = name: isSudo: {
+      nixos.${name} = { lib, ... }:
       {
-        users.users.${username} = {
+        users.users.${name} = {
           isNormalUser = true;
           extraGroups = lib.optionals isSudo [
             "wheel"
           ];
         };
 
-        home-manager.users.${username} = {
+        home-manager.users.${name} = {
           imports = [
-            self.modules.homeManager.${username}
+            self.modules.homeManager.${name}
           ];
         };
       };
 
-      homeManager.${username} = {
-        home.username = ${username};
+      homeManager.${name} = {
+        home.username = "${name}";
       };
     };
   };

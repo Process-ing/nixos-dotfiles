@@ -1,14 +1,17 @@
-{ inputs, lib, ... }
+{ inputs, lib, ... }:
 
 {
-  # Builds the Home Manager configuration for a user
-  mkHomeManager = system: user: {
-    ${user} = home-manager.lib.homeManagerConfiguration {
-      pkgs = inputs.nixpkgs.legacyPackages.${system};
+  config.flake.lib = {
 
-      modules = [
-        inputs.self.modules.homeManager.${name}
-      ]
+    # Builds the Home Manager configuration for a user
+    mkHomeManager = system: name: {
+      ${name} = inputs.home-manager.lib.homeManagerConfiguration {
+        pkgs = inputs.nixpkgs.legacyPackages.${system};
+
+        modules = [
+          inputs.self.modules.homeManager.${name}
+        ];
+      };
     };
   };
 }
