@@ -3,25 +3,37 @@
 {
   config.flake.lib = {
     # Creates the base settings for a user
-    mkUser = name: isSudo: {
-      nixos.${name} = { lib, ... }:
+    mkUser = username: isSudo: {
+      nixos.${username} = { lib, ... }:
       {
-        users.users.${name} = {
+        # User configuration
+        users.users.${username} = {
           isNormalUser = true;
           extraGroups = lib.optionals isSudo [
             "wheel"
           ];
         };
 
-        home-manager.users.${name} = {
+        home-manager.users.${username} = {
           imports = [
-            self.modules.homeManager.${name}
+            self.modules.homeManager.${username}
           ];
         };
       };
 
-      homeManager.${name} = {
-        home.username = "${name}";
+      homeManager.${username} = {
+        home.username = "${username}";
+      };
+    };
+
+    # Defines git user settings
+    mkGitUser = username: gitName: email: {
+      homeManager.${username} = {
+        # Configure git user settings
+        programs.git.settings.user = {
+          name = "${gitName}";
+          email = "${email}";
+        };
       };
     };
   };

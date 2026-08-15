@@ -1,9 +1,13 @@
-{ inputs, ... }:
+{ self, ... }:
 
 {
   flake.modules.nixos.tui = {
-    imports = with inputs.self.modules.nixos; [
+    imports = with self.modules.nixos; [
       vim
     ];
+  };
+
+  flake.modules.homeManager.tui = {
+    imports = with self.modules.homeManager; [];
   };
 }

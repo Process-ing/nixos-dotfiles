@@ -1,14 +1,8 @@
 {
-  flake.modules.nixos.git = {
+  flake.modules.homeManager.git = {
     programs.git = {
       enable = true;
-      config = {
-        user = {
-          name = "Process-ing";
-          email = "42045371+Process-ing@users.noreply.github.com";
-        };
-        init.defaultBranch = "main";
-      };
+      settings.init.defaultBranch = "main";
     };
   };
 }
