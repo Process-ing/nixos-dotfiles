@@ -27,12 +27,12 @@
     };
 
     # Defines git user settings
-    mkGitUser = username: gitName: email: {
+    mkGitUser = username: gitName: gitEmailId: {
       homeManager.${username} = {
         # Configure git user settings
         programs.git.settings.user = {
           name = "${gitName}";
-          email = "${email}";
+          email = "${gitEmailId}+${gitName}@users.noreply.github.com";
         };
       };
     };
