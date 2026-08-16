@@ -4,11 +4,16 @@
   config.flake.lib = {
     # Creates the base settings for a user
     mkUser = username: isSudo: {
-      nixos.${username} = { lib, ... }:
+      nixos.${username} = { config, lib, ... }:
       {
-        # User configuration
+        # Make password hash available on user creation
+        sops.secrets."users/${username}/password_hash".neededForUsers = true;
+
+        # NixOS user configuration
         users.users.${username} = {
           isNormalUser = true;
+          hashedPasswordFile = config.sops.secrets."users/${username}/password_hash".path;
+
           extraGroups = lib.optionals isSudo [
             "wheel"
           ];
@@ -21,6 +26,7 @@
         };
       };
 
+      # Home Manager user configuration
       homeManager.${username} = {
         home.username = "${username}";
       };
