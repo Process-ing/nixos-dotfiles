@@ -1,7 +1,7 @@
 keys:
   - &brunol_server age1yekwzd33ag9rmq3g53s5f6zvrv3q2dyu4gg0evhcktw2z5qnu5yq7ffjn8
 creation_rules:
-  - path_regex: secrets/brunol-server/[a-z\-]+\.yaml$
+  - path_regex: secrets/brunol-server.yaml$
     key_groups:
     - age:
       - *brunol_server
