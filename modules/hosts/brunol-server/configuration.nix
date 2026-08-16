@@ -6,7 +6,6 @@
     imports = with inputs.self.modules.nixos; [
         temp-de
         temp-display-conf
-        temp-shell
         temp-system
 
         system-desktop
