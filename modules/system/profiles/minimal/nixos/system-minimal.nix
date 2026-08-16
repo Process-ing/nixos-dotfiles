@@ -1,12 +1,14 @@
-{ inputs, ... }:
+{ inputs, self, ... }:
 
 {
   # Generic configuration for NixOS
   flake.modules.nixos.system-minimal = {
-    imports = with inputs.self.modules.nixos; [
+    imports = with self.modules.nixos; [
       keyboard
       locale
       grub
+    ] ++ [
+      self.modules.generic.constants  # Allow constants usage
     ];
 
     

@@ -1,7 +1,19 @@
-{ self, ... }:
+{ inputs, lib, self, ... }:
 
 {
   config.flake.lib = {
+
+    # Builds the Home Manager configuration for a user
+    mkHomeManager = system: name: {
+      ${name} = inputs.home-manager.lib.homeManagerConfiguration {
+        pkgs = inputs.nixpkgs.legacyPackages.${system};
+
+        modules = [
+          inputs.self.modules.homeManager.${name}
+        ];
+      };
+    };
+
     # Creates the base settings for a user
     mkUser = username: isSudo: {
       nixos.${username} = { config, lib, ... }: {
@@ -34,7 +46,7 @@
       };
     };
 
-    # Defines SSH settings for a user
+    # Creates SSH keys for the user
     mkSshUser = username: {
       nixos.${username} = { config, ... }: {
       
