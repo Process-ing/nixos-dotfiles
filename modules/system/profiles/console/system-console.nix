@@ -1,20 +1,21 @@
-{ inputs, ... }:
+{ self, ... }:
 
 {
   flake.modules.nixos.system-console = {
-    imports = with inputs.self.modules.nixos; [
+    imports = with self.modules.nixos; [
       system-minimal
 
+      settings-console
+      services-console
+      
       nix-tools
       cli
       tui
-
-      network
     ];
   };
 
   flake.modules.homeManager.system-console = {
-    imports = with inputs.self.modules.homeManager; [
+    imports = with self.modules.homeManager; [
       system-minimal
       
       cli
