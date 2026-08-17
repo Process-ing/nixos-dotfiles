@@ -8,7 +8,7 @@
         temp-display-conf
         temp-system
 
-        system-desktop
+        system-server
     ];
   };
 }
