@@ -13,5 +13,8 @@
       # Allow backing up existing files
       backupFileExtension = "bak";
     };
+
+    # Let Home Manager install and manage itself.
+    programs.home-manager.enable = true;
   };
 }
