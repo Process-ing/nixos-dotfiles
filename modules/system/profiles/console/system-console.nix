@@ -16,10 +16,11 @@
 
   flake.modules.homeManager.system-console = {
     imports = with self.modules.homeManager; [
-      system-minimal
-      
+      nix-tools
       cli
       tui
+    ] ++ [
+      self.modules.generic.constants  # Allow constants usage
     ];
   };
 }

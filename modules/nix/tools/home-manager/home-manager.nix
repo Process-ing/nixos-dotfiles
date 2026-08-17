@@ -13,6 +13,12 @@
       # Allow backing up existing files
       backupFileExtension = "bak";
     };
+  };
+
+  flake.modules.homeManager.home-manager = {
+    
+    # In a nutshell, do not touch this
+    home.stateVersion = "26.05";
 
     # Let Home Manager install and manage itself.
     programs.home-manager.enable = true;

@@ -7,4 +7,10 @@
       sops
     ];
   };
+
+  flake.modules.homeManager.nix-tools = {
+    imports = with self.modules.homeManager; [
+      home-manager
+    ];
+  };
 }
