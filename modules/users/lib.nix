@@ -1,4 +1,4 @@
-{ inputs, lib, self, ... }:
+{ inputs, self, ... }:
 
 {
   config.flake.lib = {
@@ -9,7 +9,7 @@
         pkgs = inputs.nixpkgs.legacyPackages.${system};
 
         modules = [
-          inputs.self.modules.homeManager.${name}
+          self.modules.homeManager.${name}
         ];
       };
     };
