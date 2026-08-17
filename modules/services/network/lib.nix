@@ -1,4 +1,4 @@
-{ config, lib, ... }:
+{ lib, self, ... }:
 
 {
   config.flake.lib = {
@@ -33,7 +33,7 @@
       toUpperSnakeCase = name: builtins.replaceStrings [ " " "-" ] [ "_" "_" ] (lib.toUpper name);
       passwordName = toUpperSnakeCase ssid;
     in lib.mkMerge [
-      (config.lib.mkWifiBoilerplate ssid)
+      (self.lib.mkWifiBoilerplate ssid)
       {
         "${ssid}" = {
           wifi-security = {

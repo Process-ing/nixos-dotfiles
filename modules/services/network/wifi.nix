@@ -5,7 +5,7 @@
     # Declare passwords secret
     sops.secrets.wifi = {};
     
-    netwroking.networkmanager.ensureProfiles = {
+    networking.networkmanager.ensureProfiles = {
       
       # Specify passwords file
       environmentFiles = [ config.sops.secrets.wifi.path ];

@@ -6,6 +6,8 @@
       services-console
 
       nginx
+
+      wifi  # TODO: Remove this
     ];
   };
 }
