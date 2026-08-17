@@ -9,6 +9,9 @@
     home-manager = {
       useGlobalPkgs = true;
       useUserPackages = true;
+
+      # Allow backing up existing files
+      backupFileExtension = "bak";
     };
   };
 }
