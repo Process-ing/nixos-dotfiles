@@ -7,6 +7,7 @@
 
       nginx
       # network-server
+      ssh-server
 
       wifi  # TODO: Remove this
     ];
