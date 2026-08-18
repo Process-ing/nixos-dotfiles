@@ -15,7 +15,7 @@
     };
 
     # Creates the base settings for a user
-    mkUser = username: isSudo: {
+    mkUser = username: homeProfile: isSudo: {
       nixos.${username} = { config, lib, ... }: {
 
         # Make password hash available on user creation
@@ -40,8 +40,14 @@
         };
       };
 
-      # Home Manager user configuration
       homeManager.${username} = {
+
+        # Import Home Manager profile
+        imports = [
+          self.modules.homeManager."system-${homeProfile}"
+        ];
+      
+        # Define username
         home.username = "${username}";
       };
     };

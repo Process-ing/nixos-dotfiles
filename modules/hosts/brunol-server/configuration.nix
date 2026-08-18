@@ -8,7 +8,12 @@
         temp-display-conf
         temp-system
 
+        # System profile
         system-server
+
+        # Users
+        brunol
+        dialga
     ];
   };
 }
