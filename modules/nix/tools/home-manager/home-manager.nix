@@ -12,6 +12,7 @@
 
       # Allow backing up existing files
       backupFileExtension = "bak";
+      overwriteBackup = true;
     };
   };
 
@@ -20,7 +21,7 @@
     # In a nutshell, do not touch this
     home.stateVersion = "26.05";
 
-    # Let Home Manager install and manage itself.
+    # Let Home Manager install and manage itself
     programs.home-manager.enable = true;
   };
 }
