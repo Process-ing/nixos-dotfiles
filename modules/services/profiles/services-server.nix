@@ -6,6 +6,7 @@
       services-console
 
       nginx
+      # network-server
 
       wifi  # TODO: Remove this
     ];
