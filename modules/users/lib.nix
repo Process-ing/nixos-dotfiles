@@ -54,18 +54,33 @@
 
     # Creates SSH keys for the user
     mkSshUser = username: {
-      nixos.${username} = { config, ... }: {
-      
-        # Copy SSH keys from secrets
-        sops.secrets."users/${username}/public_ssh_key" = {
-          owner = "${username}";
-          path = "${config.users.users.${username}.home}/.ssh/id_ed25519.pub";
+      nixos.${username} = { config, ... }: let
+        sshFolder = "${config.users.users.${username}.home}/.ssh";
+      in
+      {
+        # Fix SSH folder permissions
+        systemd.tmpfiles.settings = {
+          "10-ssh-folder" = {
+            ${sshFolder} = {
+              d = {
+                user = "${username}";
+                group = "${config.users.users.${username}.group}";
+              };
+            };
+          };
         };
 
+        # Declare private key secret
         sops.secrets."users/${username}/private_ssh_key" = {
           owner = "${username}";
-          path = "${config.users.users.${username}.home}/.ssh/id_ed25519";
+          path = "${sshFolder}/id_ed25519";
         };
+      };
+
+      homeManager.${username} = { config, ... }: {
+
+        # Write SSH public key
+        home.file.".ssh/id_ed25519.pub".text = "${config.constants.publicKey.${username}}";
       };
     };
 
