@@ -13,7 +13,7 @@
 
         # Users
         brunol
-        dialga
+        cresselia
     ];
   };
 }
