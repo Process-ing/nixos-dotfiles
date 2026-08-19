@@ -1,7 +1,8 @@
 {
   flake.modules.nixos.docker = {
     virtualisation.docker = {
-      enable = true;
+      # Disable rootful Docker
+      enable = false;
 
       # Configure rootless docker
       rootless = {
