@@ -1,5 +1,5 @@
-{ inputs, ... }:
+{ self, ... }:
 
 {
-  flake.nixosConfigurations = inputs.self.lib.mkNixos "x86_64-linux" "brunol-server";
+  flake.nixosConfigurations = self.lib.mkNixos "x86_64-linux" "brunol-server";
 }

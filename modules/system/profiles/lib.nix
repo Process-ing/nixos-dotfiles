@@ -1,4 +1,4 @@
-{ inputs, lib, ... }:
+{ inputs, lib, self, ... }:
 
 {
   config.flake.lib = {
@@ -7,7 +7,7 @@
       ${name} = inputs.nixpkgs.lib.nixosSystem {
         modules = [
           # Include host module
-          inputs.self.modules.nixos.${name}
+          self.modules.nixos.${name}
           {
             # Set platform
             nixpkgs.hostPlatform = lib.mkDefault system;
