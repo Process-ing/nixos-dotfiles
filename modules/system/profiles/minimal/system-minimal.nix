@@ -1,11 +1,10 @@
 { inputs, self, ... }:
 
 {
-  # Generic configuration for NixOS
+  # Minimal configuration for NixOS
   flake.modules.nixos.system-minimal = {
-    imports = with self.modules.nixos; [
-      settings-minimal
-    ] ++ [
+    imports = [
+      self.modules.nixos.settings-minimal
       self.modules.generic.constants  # Allow constants usage
     ];
 
@@ -15,5 +14,13 @@
 
     # In a nutshell, do not touch this
     system.stateVersion = "26.05";
+  };
+
+  # Minimal configuration for Home Manager
+  flake.modules.homeManager.system-minimal = {
+    imports = [
+      self.modules.homeManager.home-manager
+      self.modules.generic.constants  # Allow constants usage
+    ];
   };
 }

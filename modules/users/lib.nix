@@ -8,14 +8,12 @@
       ${name} = inputs.home-manager.lib.homeManagerConfiguration {
         pkgs = inputs.nixpkgs.legacyPackages.${system};
 
-        modules = [
-          self.modules.homeManager.${name}
-        ];
+        modules = [ self.modules.homeManager.${name} ];
       };
     };
 
-    # Creates the base settings for a user
-    mkUser = username: homeProfile: isSudo: {
+    # Creates the base settings for a normal user
+    mkUser = username: homeProfile: {
       nixos.${username} = { config, lib, ... }: {
 
         # Make password hash available on user creation
@@ -28,26 +26,47 @@
           isNormalUser = true;
           hashedPasswordFile = config.sops.secrets."users/${username}/password_hash".path;
 
-          extraGroups = lib.optionals isSudo [
-            "wheel"
-          ];
+          # Give user sudo permissions
+          extraGroups = [ "wheel" ];
         };
 
         home-manager.users.${username} = {
-          imports = [
-            self.modules.homeManager.${username}
-          ];
+          imports = [ self.modules.homeManager.${username} ];
         };
       };
 
       homeManager.${username} = {
 
         # Import Home Manager profile
-        imports = [
-          self.modules.homeManager."system-${homeProfile}"
-        ];
+        imports = [ self.modules.homeManager."system-${homeProfile}" ];
       
         # Define username
+        home.username = "${username}";
+      };
+    };
+
+    # Creates the base settings for a system user
+    mkSystemUser = username: {
+      nixos.${username} = {
+        # Define system user settings
+        users.users.${username} = {
+          isSystemUser = true;
+          group = "${username}";
+          linger = true;          # Allow user services to start/stop with system
+        };
+
+        # Create group for system user
+        users.groups.${username} = {};
+
+        home-manager.users.${username} = {
+          imports = [ self.modules.homeManager.${username} ];
+        };
+      };
+
+      homeManager.${username} = {
+        # Import Home Manager minimal configurations
+        imports = [ self.modules.homeManager.system-minimal ];
+
         home.username = "${username}";
       };
     };
