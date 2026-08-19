@@ -5,7 +5,7 @@
   flake.modules.nixos.system-minimal = {
     imports = [
       self.modules.nixos.settings-minimal
-      self.modules.generic.constants  # Allow constants usage
+      self.modules.generic.constants       # Allow constants usage
     ];
 
     
@@ -20,7 +20,7 @@
   flake.modules.homeManager.system-minimal = {
     imports = [
       self.modules.homeManager.home-manager
-      self.modules.generic.constants  # Allow constants usage
+      self.modules.generic.constants         # Allow constants usage
     ];
   };
 }

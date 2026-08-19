@@ -57,17 +57,6 @@
 
         # Create group for system user
         users.groups.${username} = {};
-
-        home-manager.users.${username} = {
-          imports = [ self.modules.homeManager.${username} ];
-        };
-      };
-
-      homeManager.${username} = {
-        # Import Home Manager minimal configurations
-        imports = [ self.modules.homeManager.system-minimal ];
-
-        home.username = "${username}";
       };
     };
 
