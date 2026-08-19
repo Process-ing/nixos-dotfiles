@@ -4,7 +4,7 @@
   flake.modules.nixos.services-console = {
     imports = with self.modules.nixos; [
       ssh
-      docker
+      podman
       network
     ];
   };
