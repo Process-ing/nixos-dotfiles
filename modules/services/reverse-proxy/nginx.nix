@@ -8,6 +8,14 @@
       recommendedOptimisation = true;
       recommendedProxySettings = true;
       recommendedTlsSettings = true;
+
+      # Add default 404 page
+      virtualHosts.localhost = {
+        default = true;
+        locations."/" = {
+          return = "404";
+        };
+      };
     };
   };
 }

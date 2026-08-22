@@ -6,7 +6,7 @@
       services-console
 
       nginx
-      # network-server
+      network-server
       podman-server
       ssh-server
 
