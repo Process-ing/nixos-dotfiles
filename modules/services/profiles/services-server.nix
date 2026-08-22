@@ -10,6 +10,8 @@
       podman-server
       ssh-server
 
+      server-workers
+
       wifi  # TODO: Remove this
     ];
   };
