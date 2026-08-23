@@ -6,6 +6,19 @@
       cgra-worker
     ];
 
+    # Define SSL secrets
+    sops.secrets = {
+      "nginx/ssl_certificate" = {
+        owner = "nginx";
+      };
+    
+      "nginx/ssl_certificate_key" = {
+        owner = "nginx";
+      };
+    };
+
+    # Configure services
+
     services.cgra-worker = {
       enable = true;
       domain = "cgra.processing.pt";
