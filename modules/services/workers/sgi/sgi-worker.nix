@@ -1,7 +1,7 @@
 { self, ... }:
 
 {
-  flake.modules.nixos.sgi-worker = { config, lib, ... }:let 
+  flake.modules.nixos.sgi-worker = { config, lib, ... }: let 
     cfg = config.services.sgi-worker;
   in {
     options.services.sgi-worker = self.lib.mkStaticWebsiteWorkerOptions "SGI";

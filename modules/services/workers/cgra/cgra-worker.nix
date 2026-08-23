@@ -1,7 +1,7 @@
 { self, ... }:
 
 {
-  flake.modules.nixos.cgra-worker = { config, lib, ... }:let 
+  flake.modules.nixos.cgra-worker = { config, lib, ... }: let 
     cfg = config.services.cgra-worker;
   in {
     options.services.cgra-worker = self.lib.mkStaticWebsiteWorkerOptions "CGRA";

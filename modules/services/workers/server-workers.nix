@@ -5,6 +5,7 @@
     imports = with self.modules.nixos; [
       cgra-worker
       sgi-worker
+      dufs-worker
     ];
 
     # Define SSL secrets
@@ -30,6 +31,12 @@
       sgi-worker = {
         enable = true;
         domain = "sgi.processing.pt";
+      };
+
+      dufs-worker = {
+        enable = true;
+        port = 5000;
+        domain = "dufs.processing.pt";
       };
     };
   };
