@@ -10,7 +10,12 @@
 
       # Setup Nginx host
       services.nginx.virtualHosts.${cfg.domain} = {
-        root = "/srv/cgra";
+        locations = {
+          "/".return = "301 http://${cfg.domain}/project$request_uri";
+
+          "/project".root = "/srv/cgra";
+          "/lib".root = "/srv/cgra";
+        };
       };
     };
   };
