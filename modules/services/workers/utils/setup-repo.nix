@@ -6,6 +6,8 @@
 
     packages.setup-repo = pkgs.writeShellApplication {
       name = "setup-repo";
+
+      runtimeInputs = with pkgs; [ git ];
       
       text = ''
         GIT_URL=$1

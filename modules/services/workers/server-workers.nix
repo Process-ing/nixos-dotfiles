@@ -4,6 +4,7 @@
   flake.modules.nixos.server-workers = {
     imports = with self.modules.nixos; [
       cgra-worker
+      sgi-worker
     ];
 
     # Define SSL secrets
@@ -17,11 +18,19 @@
       };
     };
 
+
     # Configure services
 
-    services.cgra-worker = {
-      enable = true;
-      domain = "cgra.processing.pt";
+    services = {
+      cgra-worker = {
+        enable = true;
+        domain = "cgra.processing.pt";
+      };
+
+      sgi-worker = {
+        enable = true;
+        domain = "sgi.processing.pt";
+      };
     };
   };
 }
