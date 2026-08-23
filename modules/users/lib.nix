@@ -46,17 +46,25 @@
     };
 
     # Creates the base settings for a system user
-    mkSystemUser = username: {
-      nixos.${username} = {
+    mkSystemUser = service: subStartId: {
+      nixos."${service}-user" = {
         # Define system user settings
-        users.users.${username} = {
+        users.users.${service} = {
           isSystemUser = true;
-          group = "${username}";
-          linger = true;          # Allow user services to start/stop with system
+          group = "${service}";
+
+          home = "/var/lib/${service}";
+          createHome = true;
+
+          # Configure subordinate IDs, needed for rootless Podman
+          subUidRanges = [{ startUid = subStartId; count = 65536; }];
+          subGidRanges = [{ startGid = subStartId; count = 65536; }];
+
+          linger = true;  # Allow user services to start/stop with system
         };
 
         # Create group for system user
-        users.groups.${username} = {};
+        users.groups.${service} = {};
       };
     };
 

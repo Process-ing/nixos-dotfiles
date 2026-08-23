@@ -22,7 +22,7 @@
       # Define /etc/hosts (for debugging purposes)
       # TODO: Remove this
       hosts = {
-        "127.0.0.1" = [ "cgra.processing.pt" "sgi.processing.pt" ];
+        "127.0.0.1" = [ "cgra.processing.pt" "sgi.processing.pt" "dufs.processing.pt" ];
       };
     };
   };

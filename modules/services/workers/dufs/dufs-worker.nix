@@ -1,9 +1,13 @@
 { self, ... }:
 
 {
-  flake.modules.nixos.dufs-worker = { config, pkgs, ... }: let 
+  flake.modules.nixos.dufs-worker = { config, lib, ... }: let 
     cfg = config.services.dufs-worker;
   in {
+    imports = with self.modules.nixos; [
+      dufs-user
+    ];
+
     options.services.dufs-worker = self.lib.mkWebsiteWorkerOptions "dufs";
 
     config = lib.mkIf cfg.enable {
@@ -16,7 +20,7 @@
 
       # Build config
       sops.templates."workers/dufs/config.yaml" = {
-        owner = "darkrai";
+        owner = "dufs";
         content = ''
           serve-path: 'data'
           port: 5000
@@ -29,15 +33,15 @@
       # Setup container
       virtualisation.oci-containers.containers = {
         dufs = {
-          image = "sigoden/dufs";
-          ports = [ "${cfg.port}:5000" ];
+          image = "docker.io/sigoden/dufs";
+          ports = [ "5000:5000" ];
           volumes = [
             "${config.sops.templates."workers/dufs/config.yaml".path}:/dufs/config.yaml"
-            "/home/cresselia/dufs:/data"
+            "/tmp/dufs:/data"
           ];
           cmd = [ "--config=/dufs/config.yaml" ];
 
-          podman.user = "darkrai";
+          podman.user = "dufs";
         };
       };
 
@@ -48,7 +52,7 @@
         '';
 
         locations."/" = {
-          proxyPass = "http://localhost:${cfg.port}";
+          proxyPass = "http://localhost:${builtins.toString cfg.port}";
         };
       };
     };

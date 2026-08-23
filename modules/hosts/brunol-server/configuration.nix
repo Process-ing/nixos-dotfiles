@@ -14,7 +14,6 @@
         # Users
         brunol
         cresselia
-        darkrai
     ];
   };
 }
