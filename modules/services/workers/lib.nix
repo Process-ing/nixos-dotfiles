@@ -1,25 +1,33 @@
 { lib, self, ... }:
 
+let
+  mkEnableOption = workerName: lib.mkEnableOption "${workerName} worker";
+
+  mkPortOption = lib.mkOption {
+    type = lib.types.port;
+    description = "Port which the worker will use.";
+  };
+
+  mkDomainOption = lib.mkOption {
+    type = lib.types.str;
+    description = "DNS domain of the website";
+  };
+in
 {
   config.flake.lib = {
     mkWorkerOptions = workerName: {
-      enable = lib.mkEnableOption "${workerName} worker";
-
-      port = lib.mkOption {
-        type = lib.types.port;
-        description = "Port which the worker will use.";
-      };
+      enable = mkEnableOption workerName;
     };
 
-    mkWebsiteWorkerOptions = websiteName: domain: lib.mkMerge [
-      (self.lib.mkWorkerOptions "${websiteName} website")
+    mkStaticWebsiteWorkerOptions = websiteName: {
+      enable = mkEnableOption "${websiteName} website";
+      domain = mkDomainOption;
+    };
 
-      {
-        domain = {
-          type = lib.types.str;
-          description = "DNS domain of the website";
-        };
-      }
-    ];
+    mkWebsiteWorkerOptions = websiteName: {
+      enable = mkEnableOption "${websiteName} website";
+      port = mkPortOption;
+      domain = mkDomainOption;
+    };
   };
 }
