@@ -1,17 +1,16 @@
 {
-  perSystem = { pkgs, ... }: {
-    packages.setup-cgra = pkgs.writeShellScriptBin "setup-cgra" ''
-      # Check if the target folder exists, and finish if true
-      if [ -d /srv/cgra ]; then exit 0; fi
+  perSystem = { pkgs, self', ... }: {
+    packages.setup-cgra = pkgs.writeShellApplication {
+      name = "setup-cgra";
 
-      # Copy project to /srv
-      git clone git@github.com:Process-ing/feup-cgra /tmp/cgra
-      sudo mv /tmp/cgra /srv/cgra
-      
-      # Setup ownership and permissions
-      sudo chown -R nginx /srv/cgra
-      sudo chgrp -R nginx /srv/cgra
-      sudo chmod 500 /srv/cgra
-    '';
+      runtimeInputs = [ self'.packages.setup-repo ];
+
+      text = ''
+        # Check if the target folder exists, and finish if true
+        if [ -d /srv/cgra ]; then exit 0; fi
+
+        setup-repo 'git@github.com:Process-ing/feup-cgra' /srv/cgra nginx 500
+      '';
+    };
   };
 }
