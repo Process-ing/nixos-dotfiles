@@ -4,13 +4,12 @@
   flake.modules.nixos.dufs-worker = { config, lib, ... }: let 
     cfg = config.services.dufs-worker;
   in {
-    imports = with self.modules.nixos; [
-      dufs-user
-    ];
-
     options.services.dufs-worker = self.lib.mkWebsiteWorkerOptions "dufs";
 
     config = lib.mkIf cfg.enable {
+
+      # Register dufs user
+      system-user-registry.services = [ "dufs" ];
 
       # Declare config secrets
       sops.secrets = {

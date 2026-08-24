@@ -6,6 +6,9 @@
       cgra-worker
       sgi-worker
       dufs-worker
+      overleaf-worker
+
+      system-user-registry  # Dependency
     ];
 
     # Define SSL secrets
@@ -37,6 +40,12 @@
         enable = true;
         port = 5000;
         domain = "dufs.processing.pt";
+      };
+
+      overleaf-worker = {
+        enable = true;
+        port = 5001;
+        domain = "overleaf.processing.pt";
       };
     };
   };
