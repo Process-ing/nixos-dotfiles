@@ -6,11 +6,13 @@
       runtimeInputs = with self'.packages; [
         setup-cgra
         setup-sgi
+        setup-overleaf
       ];
 
       text = ''
         setup-cgra
         setup-sgi
+        setup-overleaf
       '';
     };
   };
