@@ -58,10 +58,6 @@
       OVERLEAF_LISTEN_IP=127.0.0.1
       OVERLEAF_PORT=${toString cfg.port}
 
-      # Sibling Containers
-      SIBLING_CONTAINERS_ENABLED=false
-      DOCKER_SOCKET_PATH=/var/run/docker.sock
-
       # Mongo configuration
       MONGO_ENABLED=true
       MONGO_DATA_PATH=/tmp/overleaf/mongo
@@ -73,6 +69,13 @@
       REDIS_DATA_PATH=/tmp/overleaf/redis
       REDIS_IMAGE=docker.io/redis:7.4
       REDIS_AOF_PERSISTENCE=true
+    '';
+
+    podmanSetup = ''
+      # Make script use rootless Podman as Docker
+      shopt -s expand_aliases
+      alias docker=podman
+      export DOCKER_HOST="unix:///run/user/$(id -u)/podman/podman.sock"
     '';
   in {
     options.services.overleaf-worker = self.lib.mkWebsiteWorkerOptions "Overleaf";
@@ -104,7 +107,7 @@
       # Create systemd service
       systemd.services.overleaf-toolkit = {
         description = "Overleaf Toolkit Container Orchestrator";
-        after = [ "network.target" ];
+        after = [ "network.target" "podman.target" ];
         wantedBy = [ "multi-user.target" ];
         path = with pkgs; [
           bash
@@ -118,20 +121,15 @@
             exit 1
           fi
 
-          # Use podman as docker
-          shopt -s expand_aliases
-          alias docker=podman
-
+          ${podmanSetup}
           cd ${overleafHome}/toolkit
           bin/up
         '';
 
         preStop = ''
-          shopt -s expand_aliases
-          alias docker=podman
-
+          ${podmanSetup}
           cd ${overleafHome}/toolkit
-          bin/down
+          bin/stop
         '';
 
         serviceConfig = {
