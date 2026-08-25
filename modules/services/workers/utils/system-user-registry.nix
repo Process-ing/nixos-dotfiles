@@ -11,6 +11,8 @@
         home = "/var/lib/${service}";
         createHome = true;
 
+        extraGroups = [ "podman" ];
+
         # Configure subordinate IDs, needed for rootless Podman
         subUidRanges = [{ startUid = 100000 + 65536 * userIdx; count = 65536; }];
         subGidRanges = [{ startGid = 100000 + 65536 * userIdx; count = 65536; }];

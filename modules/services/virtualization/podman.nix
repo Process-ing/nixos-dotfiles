@@ -1,11 +1,23 @@
 {
-  flake.modules.nixos.podman = {
+  flake.modules.nixos.podman = { pkgs, ... }: {
     virtualisation.podman = {
       enable = true;
       dockerCompat = true;  # Create symlink from `docker` to `podman`
+      dockerSocket.enable = true;
+      defaultNetwork.settings.dns_enabled = true;
     };
 
     # Set Podman as the backend for oci-containers (redundant)
-    virtualisation.oci-containers.backend = "podman";  
+    virtualisation.oci-containers.backend = "podman";
+
+    # Use docker-compose
+    environment.systemPackages = with pkgs; [
+      docker-compose
+    ];
+
+    # Disable podman-compose warning
+    environment.sessionVariables = {
+      PODMAN_COMPOSE_WARNING_LOGS = "false";
+    };
   };
 }
