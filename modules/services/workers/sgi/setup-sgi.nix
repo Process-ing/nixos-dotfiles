@@ -1,5 +1,7 @@
 {
-  perSystem = { pkgs, self', ... }: {
+  perSystem = { pkgs, self', ... }: let
+    commit = "fad42f10894023b119c6ce3ab77be8c52fbfe586";
+  in {
     packages.setup-sgi = pkgs.writeShellApplication {
       name = "setup-sgi";
 
@@ -9,7 +11,7 @@
         # Check if the target folder exists, and finish if true
         if [ -d /srv/sgi ]; then exit 0; fi
 
-        setup-repo 'git@github.com:Process-ing/feup-sgi' /srv/sgi nginx 500
+        setup-repo 'git@github.com:Process-ing/feup-sgi' ${commit} /srv/sgi nginx 500
       '';
     };
 

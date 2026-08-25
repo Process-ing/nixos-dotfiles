@@ -32,7 +32,7 @@
       # Setup container
       virtualisation.oci-containers.containers = {
         dufs = {
-          image = "docker.io/sigoden/dufs";
+          image = "docker.io/sigoden/dufs:v0.46.0";
           ports = [ "5000:5000" ];
           volumes = [
             "${config.sops.templates."workers/dufs/config.yaml".path}:/dufs/config.yaml"

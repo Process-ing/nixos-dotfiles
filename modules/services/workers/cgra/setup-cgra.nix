@@ -1,5 +1,7 @@
 {
-  perSystem = { pkgs, self', ... }: {
+  perSystem = { pkgs, self', ... }: let
+    commit = "e86d0ba50e5eab507bf1babcd27d5e9bcbd0d55c";
+  in {
     packages.setup-cgra = pkgs.writeShellApplication {
       name = "setup-cgra";
 
@@ -9,7 +11,7 @@
         # Check if the target folder exists, and finish if true
         if [ -d /srv/cgra ]; then exit 0; fi
 
-        setup-repo 'git@github.com:Process-ing/feup-cgra' /srv/cgra nginx 500
+        setup-repo 'git@github.com:Process-ing/feup-cgra' ${commit} /srv/cgra nginx 500
       '';
     };
 

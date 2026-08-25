@@ -1,6 +1,8 @@
 {
   perSystem = { pkgs, self', ... }: let 
     home = "/var/lib/overleaf";
+    
+    commit = "1ddb723d467b16141d5d112bec8ab714dde65911";  # 6.2.2
 
     setup-toolkit = pkgs.writeShellApplication {
       name = "setup-toolkit";
