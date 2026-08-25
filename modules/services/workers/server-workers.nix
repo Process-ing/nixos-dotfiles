@@ -7,6 +7,7 @@
       sgi-worker
       dufs-worker
       overleaf-worker
+      vaultwarden-worker
 
       system-user-registry  # Dependency
     ];
@@ -46,6 +47,12 @@
         enable = true;
         port = 5001;
         domain = "overleaf.processing.pt";
+      };
+
+      vaultwarden-worker = {
+        enable = true;
+        port = 5002;
+        domain = "vaultwarden.processing.pt";
       };
     };
   };
