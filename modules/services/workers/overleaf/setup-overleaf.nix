@@ -36,5 +36,7 @@
         sudo -u overleaf setup-toolkit
       '';
     };
+
+    services.setup-workers.scripts = [ self'.packages.setup-overleaf ];
   };
 }

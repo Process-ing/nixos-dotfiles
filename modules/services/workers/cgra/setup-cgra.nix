@@ -12,5 +12,7 @@
         setup-repo 'git@github.com:Process-ing/feup-cgra' /srv/cgra nginx 500
       '';
     };
+
+    services.setup-workers.scripts = [ self'.packages.setup-cgra ];
   };
 }
