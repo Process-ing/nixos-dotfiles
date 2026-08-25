@@ -107,7 +107,6 @@
         after = [ "network.target" ];
         wantedBy = [ "multi-user.target" ];
         path = with pkgs; [
-          "/run/wrappers"
           bash
           podman
           docker-compose
@@ -139,6 +138,13 @@
           Type = "simple";
           User = "overleaf";
           Group = "overleaf";
+        };
+      };
+
+      # Create Nginx host
+      services.nginx.virtualHosts.${cfg.domain} = self.lib.mkNginxHost config {
+        locations."/" = {
+          proxyPass = "http://localhost:${toString cfg.port}";
         };
       };
     };
