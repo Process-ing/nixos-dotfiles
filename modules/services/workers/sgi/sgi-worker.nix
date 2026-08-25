@@ -1,8 +1,15 @@
 { self, ... }:
 
 {
-  flake.modules.nixos.sgi-worker = { config, lib, ... }: let 
+  flake.modules.nixos.sgi-worker = { config, lib, pkgs, ... }: let 
     cfg = config.services.sgi-worker;
+
+    websiteFiles = pkgs.fetchFromGitHub {
+      owner = "Process-ing";
+      repo = "feup-sgi";
+      rev = "fad42f10894023b119c6ce3ab77be8c52fbfe586";
+      sha256 = "sha256-MFyjczWIr0b+cWGG3Rklfag7ZQDC20GJ4fVJZfcZvcg=";
+    };
   in {
     options.services.sgi-worker = self.lib.mkStaticWebsiteWorkerOptions "SGI";
 
@@ -13,9 +20,9 @@
         locations = {
           "/".return = "301 https://${cfg.domain}/pw2$request_uri";
 
-          "/pw1".root = "/srv/sgi";
-          "/pw2".root = "/srv/sgi";
-          "/lib".root = "/srv/sgi";
+          "/pw1".root = websiteFiles;
+          "/pw2".root = websiteFiles;
+          "/lib".root = websiteFiles;
         };
       };
     };
