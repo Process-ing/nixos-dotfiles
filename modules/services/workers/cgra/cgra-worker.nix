@@ -1,8 +1,15 @@
 { self, ... }:
 
 {
-  flake.modules.nixos.cgra-worker = { config, lib, ... }: let 
+  flake.modules.nixos.cgra-worker = { config, lib, pkgs, ... }: let 
     cfg = config.services.cgra-worker;
+
+    websiteFiles = pkgs.fetchFromGitHub {
+      owner = "Process-ing";
+      repo = "feup-cgra";
+      rev = "e86d0ba50e5eab507bf1babcd27d5e9bcbd0d55c";
+      sha256 = "sha256-dhJcn6kn2IhbRZS927pT2ktdTaep+QKyFfJ6rmVW+jY=";
+    };
   in {
     options.services.cgra-worker = self.lib.mkStaticWebsiteWorkerOptions "CGRA";
 
@@ -13,8 +20,8 @@
         locations = {
           "/".return = "301 https://${cfg.domain}/project$request_uri";
 
-          "/project".root = "/srv/cgra";
-          "/lib".root = "/srv/cgra";
+          "/project".root = websiteFiles;
+          "/lib".root = websiteFiles;
         };
       };
     };
