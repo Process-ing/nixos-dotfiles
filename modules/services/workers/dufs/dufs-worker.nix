@@ -3,6 +3,8 @@
 {
   flake.modules.nixos.dufs-worker = { config, lib, ... }: let 
     cfg = config.services.dufs-worker;
+
+    volumeFolder = "/tmp/dufs";
   in {
     options.services.dufs-worker = self.lib.mkWebsiteWorkerOptions "dufs";
 
@@ -29,6 +31,19 @@
         '';
       };
 
+      # Create storage volume
+      systemd.tmpfiles.settings = {
+        "10-dufs" = {
+          ${volumeFolder} = {
+            d = {
+              user = "dufs";
+              group = "dufs";
+              mode = "0700";
+            };
+          };
+        };
+      };
+
       # Setup container
       virtualisation.oci-containers.containers = {
         dufs = {
@@ -36,7 +51,7 @@
           ports = [ "5000:5000" ];
           volumes = [
             "${config.sops.templates."workers/dufs/config.yaml".path}:/dufs/config.yaml"
-            "/tmp/dufs:/data"
+            "${volumeFolder}:/data"
           ];
           cmd = [ "--config=/dufs/config.yaml" ];
 
@@ -51,7 +66,7 @@
         '';
 
         locations."/" = {
-          proxyPass = "http://localhost:${builtins.toString cfg.port}";
+          proxyPass = "http://localhost:${toString cfg.port}";
         };
       };
     };

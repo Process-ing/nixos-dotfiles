@@ -6,6 +6,14 @@
 
     overleafHome = config.users.users.overleaf.home;
 
+    volumeBaseFolder = "/tmp/overleaf";
+
+    volumeDetails = {
+      user = "overleaf";
+      group = "overleaf";
+      mode = "0700";
+    };
+
     mkVariablesEnv = config: ''
       OVERLEAF_APP_NAME=Processing's Overleaf
       ENABLED_LINKED_FILE_TYPES=project_file,project_output_file
@@ -53,20 +61,20 @@
       # Sharelatex container
       # Uncomment the OVERLEAF_IMAGE_NAME variable to use a user-defined image.
       OVERLEAF_IMAGE_NAME=docker.io/sharelatex/sharelatex
-      OVERLEAF_DATA_PATH=/tmp/overleaf/data
+      OVERLEAF_DATA_PATH=${volumeBaseFolder}/data
       SERVER_PRO=false
       OVERLEAF_LISTEN_IP=127.0.0.1
       OVERLEAF_PORT=${toString cfg.port}
 
       # Mongo configuration
       MONGO_ENABLED=true
-      MONGO_DATA_PATH=/tmp/overleaf/mongo
+      MONGO_DATA_PATH=${volumeBaseFolder}/mongo
       MONGO_IMAGE=docker.io/mongo
       MONGO_VERSION=8.0
 
       # Redis configuration
       REDIS_ENABLED=true
-      REDIS_DATA_PATH=/tmp/overleaf/redis
+      REDIS_DATA_PATH=${volumeBaseFolder}/redis
       REDIS_IMAGE=docker.io/redis:7.4
       REDIS_AOF_PERSISTENCE=true
     '';
@@ -102,6 +110,21 @@
         owner = "overleaf";
         content = mkOverleafRc;
         path = "${overleafHome}/.secrets/overleaf.rc";
+      };
+
+      # Create storage volumes
+      systemd.tmpfiles.settings = {
+        "10-overleaf" = {
+          "${volumeBaseFolder}/data" = {
+            d = volumeDetails;
+          };
+          "${volumeBaseFolder}/mongo" = {
+            d = volumeDetails;
+          };
+          "${volumeBaseFolder}/redis" = {
+            d = volumeDetails;
+          };
+        };
       };
 
       # Create systemd service
