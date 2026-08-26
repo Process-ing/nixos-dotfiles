@@ -1,0 +1,41 @@
+{
+ "!comment": "This is a nixpkgs Gradle dependency lockfile. For more details, refer to the Gradle section in the nixpkgs manual.",
+ "!version": 1,
+ "https://repo.maven.apache.org/maven2": {
+  "com/google/code/gson#gson-parent/2.10": {
+   "pom": "sha256-+1OsCwbBkRbKYaw0S03+inwpzE+Bs1POiJSTpQOQBPs="
+  },
+  "com/google/code/gson#gson/2.10": {
+   "jar": "sha256-DN0WPONZiiD8BO7nGxQLJPbyo7NfCkmdu92YUug/v68=",
+   "pom": "sha256-rGnZ8lQmDK6rOZjqrWDzVVmcJRIeGVFWv9/8ijVfxr0="
+  },
+  "junit#junit/4.11": {
+   "jar": "sha256-kKjhYD7spI5+h586+8lWBxUyKYXzmidPb2BwtD+dBv4=",
+   "pom": "sha256-GK2LCunmWpGV0E4lQn3+i1gXWrza6HWlpAau44vd+yY="
+  },
+  "org/antlr#antlr4-master/4.5.3": {
+   "pom": "sha256-QBh31ecK1Znpts/xhDTqAzL2N7UfjsaDUmRsg2+bsqQ="
+  },
+  "org/antlr#antlr4/4.5.3": {
+   "jar": "sha256-oy3nOc/fUVd05pb5GqlpfS53MeXLUEXKiktlf4sbT7Q=",
+   "pom": "sha256-ik5LMu7apyl2p1fhLPHf50JyXbC3MRvxdt2Te6QjY4Q="
+  },
+  "org/fusesource#fusesource-pom/1.12": {
+   "pom": "sha256-xA2WDarc73sBwbHGZXr7rE//teUxaPj8sLKLhOb9zKE="
+  },
+  "org/fusesource/jansi#jansi/2.4.0": {
+   "jar": "sha256-bNkZkTI917L7KMqT16wSr1qGovUyeeKzWCezAxP9C58=",
+   "pom": "sha256-rECp8tDB7mMfw7CO+OLwvRS6IgEcp2/xvPZftWnq3zU="
+  },
+  "org/hamcrest#hamcrest-core/1.3": {
+   "jar": "sha256-Zv3vkelzk0jfeglqo4SlaF9Oh1WEzOiThqekclHE2Ok=",
+   "pom": "sha256-/eOGp5BRc6GxA95quCBydYS1DQ4yKC4nl3h8IKZP+pM="
+  },
+  "org/hamcrest#hamcrest-parent/1.3": {
+   "pom": "sha256-bVNflO+2Y722gsnyelAzU5RogAlkK6epZ3UEvBvkEps="
+  },
+  "org/sonatype/oss#oss-parent/9": {
+   "pom": "sha256-+0AmX5glSCEv+C42LllzKyGH7G8NgBgohcFO8fmCgno="
+  }
+ }
+}

@@ -22,7 +22,7 @@
       sops.templates."workers/vaultwarden/.env" = {
         owner = "vaultwarden";
         content = ''
-          SIGNUPS_ALLOWED="false"
+          SIGNUPS_ALLOWED=false
           ADMIN_TOKEN=${config.sops.placeholder."workers/vaultwarden/admin_token"}
         '';
       };
