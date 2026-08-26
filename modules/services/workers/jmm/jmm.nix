@@ -4,7 +4,7 @@
       pname = "jmm";
       version = "2.0.0";
 
-      src = builtins.fetchGit {
+      src = fetchGit {
         url = "ssh://git@github.com/Process-ing/feup-comp.git";
         rev = "12905d11df7e09802aa9f6bfa794742f17329e83";
         shallow = true;
@@ -27,7 +27,6 @@
 
       meta.sourceProvenance = with lib.sourceTypes; [
         fromSource
-        binaryBytecode
       ];
     });
   };

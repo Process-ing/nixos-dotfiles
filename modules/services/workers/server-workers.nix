@@ -8,6 +8,7 @@
       dufs-worker
       overleaf-worker
       vaultwarden-worker
+      jmm-worker
 
       system-user-registry  # Dependency
     ];
@@ -53,6 +54,12 @@
         enable = true;
         port = 5002;
         domain = "vaultwarden.processing.pt";
+      };
+
+      jmm-worker = {
+        enable = true;
+        port = 5003;
+        domain = "jmm.processing.pt";
       };
     };
   };
