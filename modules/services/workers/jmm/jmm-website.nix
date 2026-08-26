@@ -36,6 +36,11 @@
       '';
 
       dontPatchShebangs = true;
+
+      meta.sourceProvenance = with lib.sourceTypes; [
+        fromSource
+        binaryBytecode
+      ];
     });
   };
 
