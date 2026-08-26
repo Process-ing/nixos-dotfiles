@@ -34,12 +34,10 @@
       # Create storage volume
       systemd.tmpfiles.settings = {
         "10-dufs" = {
-          ${volumeFolder} = {
-            d = {
-              user = "dufs";
-              group = "dufs";
-              mode = "0700";
-            };
+          ${volumeFolder}.d = {
+            user = "dufs";
+            group = "dufs";
+            mode = "0700";
           };
         };
       };

@@ -13,7 +13,7 @@
 
       # Create build service
       systemd.services."podman-jmm-build" = {
-        unitConfig.Description = "Build service for jmm worker";
+        description = "Build service for jmm worker";
         path = [ pkgs.podman ];
         wantedBy = [ "multi-user.target" ];
         serviceConfig = {
@@ -39,6 +39,7 @@
         };
       };
 
+      # Ensure image is built before launching
       systemd.services."podman-jmm".after = [ "podman-jmm-build.target" ];
 
       # Configure Nginx host

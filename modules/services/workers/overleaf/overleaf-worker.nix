@@ -4,14 +4,19 @@
   flake.modules.nixos.overleaf-worker = { config, lib, pkgs, ... }: let
     cfg = config.services.overleaf-worker;
 
-    overleafHome = config.users.users.overleaf.home;
+    toolkitRepo = pkgs.fetchFromGitHub {
+      owner = "Process-ing";
+      repo = "overleaf-toolkit";
+      rev = "d7619b16737f2299beaa421b8c6382dab239c1c4";  # 6.2.2
+      sha256 = "sha256-RYLVMJOWqSHzNN267DQ/hg92U/mtmOhGDUJB25pwT0M=";
+    };
 
     volumeBaseFolder = "/tmp/overleaf";
 
     volumeDetails = {
       user = "overleaf";
       group = "overleaf";
-      mode = "0700";
+      mode = "0755";
     };
 
     mkVariablesEnv = config: ''
@@ -103,13 +108,11 @@
       sops.templates."workers/overleaf/variables.env" = {
         owner = "overleaf";
         content = mkVariablesEnv config;
-        path = "${overleafHome}/.secrets/variables.env";
       };
 
       sops.templates."workers/overleaf/overleaf.rc" = {
         owner = "overleaf";
         content = mkOverleafRc;
-        path = "${overleafHome}/.secrets/overleaf.rc";
       };
 
       # Create storage volumes
@@ -130,37 +133,48 @@
       # Create systemd service
       systemd.services.overleaf-toolkit = {
         description = "Overleaf Toolkit Container Orchestrator";
-        after = [ "network.target" "podman.target" ];
+        after = [ "network.target" "podman.target" "overleaf-toolkit-setup.target" ];
         wantedBy = [ "multi-user.target" ];
-        path = with pkgs; [
-          bash
-          podman
-          docker-compose
-        ];
-
-        script = ''
-          if [ ! -d ${overleafHome}/toolkit ]; then
-            echo "Warning: setup is missing, terminating..."
-            exit 1
-          fi
-
-          ${podmanSetup}
-          cd ${overleafHome}/toolkit
-          bin/up
-        '';
-
-        preStop = ''
-          ${podmanSetup}
-          cd ${overleafHome}/toolkit
-          bin/stop
-        '';
-
+        path = [ pkgs.openssl pkgs.bash pkgs.podman pkgs.docker-compose ];
         serviceConfig = {
           Type = "simple";
           User = "overleaf";
           Group = "overleaf";
           TimeoutStopSec = "1200s";
         };
+
+        # Used to configure the toolkit if needed
+        preStart = ''
+          if [ ! -d ~/toolkit ]; then
+
+            # Copy repo
+            cp -r ${toolkitRepo} ~/toolkit
+            chmod -R 755 ~/toolkit
+
+            cd ~/toolkit
+            bin/init
+            
+            # Make configuration links
+            cd ~/toolkit/config
+            mv variables.env variables.env.old
+            mv overleaf.rc overleaf.rc.old
+            ln -s ${config.sops.templates."workers/overleaf/variables.env".path} variables.env
+            ln -s ${config.sops.templates."workers/overleaf/overleaf.rc".path} overleaf.rc
+          fi
+        '';
+
+        script = ''
+          ${podmanSetup}
+          cd ~/toolkit
+          bin/up
+        '';
+
+        preStop = ''
+          ${podmanSetup}
+          cd ~/toolkit
+          bin/stop
+        '';
+
       };
 
       # Create Nginx host

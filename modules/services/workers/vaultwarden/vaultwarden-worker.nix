@@ -30,12 +30,10 @@
       # Create storage volume
       systemd.tmpfiles.settings = {
         "10-vaultwarden" = {
-          ${volumeFolder} = {
-            d = {
-              user = "vaultwarden";
-              group = "vaultwarden";
-              mode = "0700";
-            };
+          ${volumeFolder}.d = {
+            user = "vaultwarden";
+            group = "vaultwarden";
+            mode = "0700";
           };
         };
       };

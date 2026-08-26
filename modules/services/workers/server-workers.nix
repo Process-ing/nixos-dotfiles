@@ -63,7 +63,7 @@
         domain = "jmm.processing.pt";
       };
 
-      cloudflare-ddns-worker.enable = true;
+      cloudflare-ddns-worker.enable = false;
     };
   };
 }
