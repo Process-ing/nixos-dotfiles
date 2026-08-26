@@ -12,6 +12,9 @@
     # Enable flakes
     nix.settings.experimental-features = [ "nix-command" "flakes" ];
 
+    # Register NixOS overlays
+    nixpkgs.overlays = [ self.overlays.default ];
+
     # In a nutshell, do not touch this
     system.stateVersion = "26.05";
   };

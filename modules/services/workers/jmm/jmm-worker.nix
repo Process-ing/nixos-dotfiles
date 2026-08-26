@@ -11,6 +11,36 @@
       # Register jmm user
       system-user-registry.services = [ "jmm" ];
 
+      # Create build service
+      systemd.services."podman-jmm-build" = {
+        unitConfig.Description = "Build service for jmm worker";
+        path = [ pkgs.podman ];
+        wantedBy = [ "multi-user.target" ];
+        serviceConfig = {
+          Type = "oneshot";
+          TimeoutSec = 300;
+          User = "jmm";
+          Group = "jmm";
+        };
+
+        script = ''
+          podman build -t jmm ${pkgs.jmm-website}/share/jmm-website
+        '';
+      };
+
+      # Setup container
+      virtualisation.oci-containers.containers = {
+        jmm = {
+          image = "jmm:latest";
+          pull = "never";
+          ports = [ "${toString cfg.port}:3000" ];
+
+          podman.user = "jmm";
+        };
+      };
+
+      systemd.services."podman-jmm".after = [ "podman-jmm-build.target" ];
+
       # Configure Nginx host
       services.nginx.virtualHosts.${cfg.domain} = self.lib.mkNginxHost config {
         locations."/" = {

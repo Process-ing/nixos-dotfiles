@@ -1,3 +1,5 @@
+{ self, ... }:
+
 {
   perSystem = { pkgs, lib, self', ... }: {
     packages.jmm-website = pkgs.stdenv.mkDerivation (finalAttrs: {
@@ -35,5 +37,10 @@
 
       dontPatchShebangs = true;
     });
+  };
+
+  # Add package
+  flake.overlays.default = final: prev: {
+    jmm-website = self.packages.${prev.stdenv.hostPlatform.system}.jmm-website;
   };
 }

@@ -49,6 +49,8 @@
           volumes = [
             "${volumeFolder}:/data"
           ];
+
+          podman.user = "vaultwarden";
         };
       };
 
