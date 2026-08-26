@@ -5,6 +5,7 @@
     imports = with self.modules.nixos; [
       home-manager
       sops
+      nix-index-database
     ];
   };
 
