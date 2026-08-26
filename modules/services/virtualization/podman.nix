@@ -10,6 +10,11 @@
     # Set Podman as the backend for oci-containers (redundant)
     virtualisation.oci-containers.backend = "podman";
 
+    # Configure default registries
+    virtualisation.containers.registries.settings.unqualified-search-registries = [
+      "docker.io"
+    ];
+
     # Use docker-compose
     environment.systemPackages = with pkgs; [
       docker-compose

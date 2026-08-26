@@ -14,14 +14,26 @@
       nativeBuildInputs = [ self'.packages.jmm ];
 
       buildPhase = ''
-        mkdir -p compiler
-        cp -r ${self'.packages.jmm}/share/jmm compiler/jmm
+        # Copy compiler
+        cp -r ${self'.packages.jmm}/share compiler
+        chmod -R +w compiler 
+        
+        # Create executable
+        mkdir -p compiler/jmm/bin
+        cat > compiler/jmm/bin/jmm << EOF
+        #!/bin/sh
+
+        eval "java -jar \$(dirname \$0)/../lib/jmm.jar \$*"
+        EOF
+        chmod +x compiler/jmm/bin/jmm
       '';
 
       installPhase = ''
         mkdir -p $out/share
         cp -r . $out/share/jmm-website
       '';
+
+      dontPatchShebangs = true;
     });
   };
 }
