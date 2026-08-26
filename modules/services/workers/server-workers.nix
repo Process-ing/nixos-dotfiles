@@ -9,6 +9,7 @@
       overleaf-worker
       vaultwarden-worker
       jmm-worker
+      cloudflare-ddns-worker
 
       system-user-registry  # Dependency
     ];
@@ -61,6 +62,8 @@
         port = 5003;
         domain = "jmm.processing.pt";
       };
+
+      cloudflare-ddns-worker.enable = true;
     };
   };
 }

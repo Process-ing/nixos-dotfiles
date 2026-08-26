@@ -18,9 +18,9 @@
         wantedBy = [ "multi-user.target" ];
         serviceConfig = {
           Type = "oneshot";
-          TimeoutSec = 300;
           User = "jmm";
           Group = "jmm";
+          TimeoutStopSec = "600s";
         };
 
         script = ''

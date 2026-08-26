@@ -159,7 +159,7 @@
           Type = "simple";
           User = "overleaf";
           Group = "overleaf";
-          TimeoutStopSec = "300s";
+          TimeoutStopSec = "1200s";
         };
       };
 
