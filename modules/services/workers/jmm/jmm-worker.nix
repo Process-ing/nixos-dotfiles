@@ -11,23 +11,6 @@
       # Register jmm user
       system-user-registry.services = [ "jmm" ];
 
-      # Create build service
-      systemd.services."podman-jmm-build" = {
-        description = "Build service for jmm worker";
-        path = [ pkgs.podman ];
-        wantedBy = [ "multi-user.target" ];
-        serviceConfig = {
-          Type = "oneshot";
-          User = "jmm";
-          Group = "jmm";
-          TimeoutStopSec = "600s";
-        };
-
-        script = ''
-          podman build -t jmm ${pkgs.jmm-website}/share/jmm-website
-        '';
-      };
-
       # Setup container
       virtualisation.oci-containers.containers = {
         jmm = {
@@ -39,8 +22,14 @@
         };
       };
 
-      # Ensure image is built before launching
-      systemd.services."podman-jmm".after = [ "podman-jmm-build.target" ];
+      # Add container build step
+      systemd.services.podman-jmm = {
+        path = [ pkgs.podman ];
+
+        preStart = lib.mkAfter ''
+          podman build -t jmm ${pkgs.jmm-website}/share/jmm-website
+        '';
+      };
 
       # Configure Nginx host
       services.nginx.virtualHosts.${cfg.domain} = self.lib.mkNginxHost config {
