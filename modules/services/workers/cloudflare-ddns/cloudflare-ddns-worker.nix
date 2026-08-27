@@ -3,6 +3,9 @@
 {
   flake.modules.nixos.cloudflare-ddns-worker = { config, lib, ... }: let
     cfg = config.workers.cloudflare-ddns;
+
+    mkDomainWorkers = config: (builtins.filter (w: w ? domain) (builtins.attrValues config.workers));
+    mkDomainList = config: lib.concatMapStringsSep "," (w: w.domain) (mkDomainWorkers config);
   in {
     options.workers.cloudflare-ddns = self.lib.mkWorkerOptions "Cloudflare DDNS";
 
@@ -21,7 +24,7 @@
         owner = "cloudflare-ddns";
         content = ''
           CLOUDFLARE_API_TOKEN=${config.sops.placeholder."workers/cloudflare_ddns/cloudflare_api_token"}
-          DOMAINS=processing.pt,dufs.processing.pt,vaultwarden.processing.pt,cgra.processing.pt,jmm.processing.pt,overleaf.processing.pt,sgi.processing.pt
+          DOMAINS=${mkDomainList config}
           PROXIED=true
         '';
       };
