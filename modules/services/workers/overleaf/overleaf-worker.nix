@@ -13,10 +13,15 @@
 
     volumeBaseFolder = "/tmp/overleaf";
 
-    volumeDetails = {
+    volumePermissions = {
       user = "overleaf";
       group = "overleaf";
       mode = "0755";
+    };
+
+    volumeOwnership = {
+      user = "overleaf";
+      group = "overleaf";
     };
 
     mkVariablesEnv = config: ''
@@ -119,13 +124,16 @@
       systemd.tmpfiles.settings = {
         "10-overleaf" = {
           "${volumeBaseFolder}/data" = {
-            d = volumeDetails;
+            d = volumePermissions;
+            Z = volumeOwnership;    # Z used to fix ownership on the volumes recursively
           };
           "${volumeBaseFolder}/mongo" = {
-            d = volumeDetails;
+            d = volumePermissions;
+            Z = volumeOwnership;
           };
           "${volumeBaseFolder}/redis" = {
-            d = volumeDetails;
+            d = volumePermissions;
+            Z = volumeOwnership;
           };
         };
       };
@@ -172,7 +180,7 @@
         preStop = ''
           ${podmanSetup}
           cd ~/toolkit
-          bin/docker-compose down
+          bin/stop
         '';
 
       };
