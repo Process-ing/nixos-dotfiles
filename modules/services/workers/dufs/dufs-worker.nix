@@ -2,11 +2,11 @@
 
 {
   flake.modules.nixos.dufs-worker = { config, lib, ... }: let 
-    cfg = config.services.dufs-worker;
+    cfg = config.workers.dufs;
 
     volumeFolder = "/tmp/dufs";
   in {
-    options.services.dufs-worker = self.lib.mkWebsiteWorkerOptions "dufs";
+    options.workers.dufs = self.lib.mkWebsiteWorkerOptions "dufs";
 
     config = lib.mkIf cfg.enable {
 

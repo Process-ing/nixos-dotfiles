@@ -2,7 +2,7 @@
 
 {
   flake.modules.nixos.cgra-worker = { config, lib, pkgs, ... }: let 
-    cfg = config.services.cgra-worker;
+    cfg = config.workers.cgra;
 
     websiteFiles = pkgs.fetchFromGitHub {
       owner = "Process-ing";
@@ -11,7 +11,7 @@
       sha256 = "sha256-dhJcn6kn2IhbRZS927pT2ktdTaep+QKyFfJ6rmVW+jY=";
     };
   in {
-    options.services.cgra-worker = self.lib.mkStaticWebsiteWorkerOptions "CGRA";
+    options.workers.cgra = self.lib.mkStaticWebsiteWorkerOptions "CGRA";
 
     config = lib.mkIf cfg.enable {
 

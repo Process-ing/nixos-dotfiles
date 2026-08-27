@@ -2,7 +2,7 @@
 
 {
   flake.modules.nixos.sgi-worker = { config, lib, pkgs, ... }: let 
-    cfg = config.services.sgi-worker;
+    cfg = config.workers.sgi;
 
     websiteFiles = pkgs.fetchFromGitHub {
       owner = "Process-ing";
@@ -11,7 +11,7 @@
       sha256 = "sha256-MFyjczWIr0b+cWGG3Rklfag7ZQDC20GJ4fVJZfcZvcg=";
     };
   in {
-    options.services.sgi-worker = self.lib.mkStaticWebsiteWorkerOptions "SGI";
+    options.workers.sgi = self.lib.mkStaticWebsiteWorkerOptions "SGI";
 
     config = lib.mkIf cfg.enable {
 

@@ -2,9 +2,9 @@
 
 {
   flake.modules.nixos.jmm-worker = { config, lib, pkgs, ... }: let
-    cfg = config.services.jmm-worker;
+    cfg = config.workers.jmm;
   in {
-    options.services.jmm-worker = self.lib.mkWebsiteWorkerOptions "jmm";
+    options.workers.jmm = self.lib.mkWebsiteWorkerOptions "jmm";
 
     config = lib.mkIf cfg.enable {
 

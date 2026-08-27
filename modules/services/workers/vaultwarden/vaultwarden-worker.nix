@@ -2,11 +2,11 @@
 
 {
   flake.modules.nixos.vaultwarden-worker = { config, lib, ... }: let
-    cfg = config.services.vaultwarden-worker;
+    cfg = config.workers.vaultwarden;
 
     volumeFolder = "/tmp/vaultwarden";
   in {
-    options.services.vaultwarden-worker = self.lib.mkWebsiteWorkerOptions "vaultwarden";
+    options.workers.vaultwarden = self.lib.mkWebsiteWorkerOptions "vaultwarden";
 
     config = lib.mkIf cfg.enable {
 

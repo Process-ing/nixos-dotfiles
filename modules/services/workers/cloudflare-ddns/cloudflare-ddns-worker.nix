@@ -2,9 +2,9 @@
 
 {
   flake.modules.nixos.cloudflare-ddns-worker = { config, lib, ... }: let
-    cfg = config.services.cloudflare-ddns-worker;
+    cfg = config.workers.cloudflare-ddns;
   in {
-    options.services.cloudflare-ddns-worker = self.lib.mkWorkerOptions "Cloudflare DDNS";
+    options.workers.cloudflare-ddns = self.lib.mkWorkerOptions "Cloudflare DDNS";
 
     config = lib.mkIf cfg.enable {
 

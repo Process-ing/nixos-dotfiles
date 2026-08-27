@@ -2,7 +2,7 @@
 
 {
   flake.modules.nixos.overleaf-worker = { config, lib, pkgs, ... }: let
-    cfg = config.services.overleaf-worker;
+    cfg = config.workers.overleaf;
 
     toolkitRepo = pkgs.fetchFromGitHub {
       owner = "Process-ing";
@@ -91,7 +91,7 @@
       export DOCKER_HOST="unix:///run/user/$(id -u)/podman/podman.sock"
     '';
   in {
-    options.services.overleaf-worker = self.lib.mkWebsiteWorkerOptions "Overleaf";
+    options.workers.overleaf = self.lib.mkWebsiteWorkerOptions "Overleaf";
 
     config = lib.mkIf cfg.enable {
 

@@ -28,42 +28,42 @@
 
     # Configure services
 
-    services = {
-      cgra-worker = {
+    workers = {
+      cgra = {
         enable = true;
         domain = "cgra.processing.pt";
       };
 
-      sgi-worker = {
+      sgi = {
         enable = true;
         domain = "sgi.processing.pt";
       };
 
-      dufs-worker = {
+      dufs = {
         enable = true;
         port = 5000;
         domain = "dufs.processing.pt";
       };
 
-      overleaf-worker = {
+      overleaf = {
         enable = true;
         port = 5001;
         domain = "overleaf.processing.pt";
       };
 
-      vaultwarden-worker = {
+      vaultwarden = {
         enable = true;
         port = 5002;
         domain = "vaultwarden.processing.pt";
       };
 
-      jmm-worker = {
+      jmm = {
         enable = true;
         port = 5003;
         domain = "jmm.processing.pt";
       };
 
-      cloudflare-ddns-worker.enable = false;
+      cloudflare-ddns.enable = false;
     };
   };
 }
