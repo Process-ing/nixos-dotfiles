@@ -15,7 +15,6 @@
     # Creates the base settings for a normal user
     mkUser = username: homeProfile: {
       nixos.${username} = { config, lib, ... }: {
-
         # Make password hash available on user creation
         sops.secrets."users/${username}/password_hash" = {
           neededForUsers = true;
@@ -26,12 +25,23 @@
           isNormalUser = true;
           hashedPasswordFile = config.sops.secrets."users/${username}/password_hash".path;
 
-          # Give user sudo permissions
-          extraGroups = [ "wheel" ];
+          # Give user sudo permissions, along with others
+          extraGroups = [ "wheel" "network" ];
         };
 
+        # Add Home Manager configuration
         home-manager.users.${username} = {
           imports = [ self.modules.homeManager.${username} ];
+        };
+
+        # Add personal secrets folder
+        systemd.tmpfiles.settings = {
+          "10-secrets-folder" = {
+            "/home/${username}/.secrets".d = {
+              user = "${username}";
+              group = "${config.users.users.${username}.group}";
+            };
+          };
         };
       };
 
@@ -46,61 +56,25 @@
     };
 
     # Creates SSH keys for the user
-    mkSshUser = username: {
-      nixos.${username} = { config, ... }: let
-        sshFolder = "${config.users.users.${username}.home}/.ssh";
-      in
-      {
-        # Fix SSH folder permissions
-        systemd.tmpfiles.settings = {
-          "10-ssh-folder" = {
-            ${sshFolder} = {
-              d = {
-                user = "${username}";
-                group = "${config.users.users.${username}.group}";
-              };
-            };
-          };
-        };
+    mkSshUser = username: let
+      identityFilePath = "/home/${username}/.secrets/id_ed25519";
+    in {
+      nixos.${username} = { config, ... }: {
 
-        # Declare private key secret
+        # Declare identity file secret
         sops.secrets."users/${username}/private_ssh_key" = {
           owner = "${username}";
-          path = "${sshFolder}/id_ed25519";
+          path = identityFilePath;
         };
       };
 
       homeManager.${username} = { config, ... }: {
 
-        # Write SSH public key
-        home.file.".ssh/id_ed25519.pub".text = "${config.constants.publicKey.${username}}";
+        # Include Home Manager module
+        imports = [ self.modules.homeManager.ssh ];
 
-        # Define SSH configurations
-        programs.ssh = {
-          enable = true;
-          enableDefaultConfig = false;
-
-          settings = {
-            "*" = {
-              ForwardAgent = false;
-              AddKeysToAgent = "yes";
-              Compression = false;
-              ServerAliveInterval = 0;
-              ServerAliveCountMax = 3;
-              HashKnownHosts = false;
-              UserKnownHostsFile = "~/.ssh/known_hosts";
-              ControlMaster = "no";
-              ControlPath = "~/.ssh/master-%r@%n:%p";
-              ControlPersist = "no";
-            };
-          };
-        };
-
-        # Enable SSH agent
-        services.ssh-agent = {
-          enable = true;
-          defaultMaximumIdentityLifetime = 3600;
-        };
+        # Add identity file to configuration
+        programs.ssh.settings."*".IdentityFile = identityFilePath;
       };
     };
 
