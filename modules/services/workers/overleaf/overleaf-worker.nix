@@ -172,7 +172,7 @@
         preStop = ''
           ${podmanSetup}
           cd ~/toolkit
-          bin/stop
+          bin/docker-compose down
         '';
 
       };
