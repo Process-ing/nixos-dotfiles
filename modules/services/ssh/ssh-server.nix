@@ -5,7 +5,7 @@
       ports = [ 4222 ];
 
       # Define allowed authentication users
-      settings.AllowUsers = [ "cresselia" ];
+      settings.AllowUsers = [ "zygarde" ];
     };
   };
 }

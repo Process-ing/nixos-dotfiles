@@ -13,7 +13,7 @@
 
         # Users
         brunol
-        cresselia
+        zygarde
     ];
   };
 }
