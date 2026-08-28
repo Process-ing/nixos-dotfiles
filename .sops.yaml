@@ -1,5 +1,5 @@
 keys:
-  - &brunol_server age1yekwzd33ag9rmq3g53s5f6zvrv3q2dyu4gg0evhcktw2z5qnu5yq7ffjn8
+  - &brunol_server age187v9xhe3qh38suszug9chz6ya8nj0yajyrhm5mhnm4rftf7l9qmqffvexj
   - &brunol_laptop age1yekwzd33ag9rmq3g53s5f6zvrv3q2dyu4gg0evhcktw2z5qnu5yq7ffjn8
 creation_rules:
   - path_regex: secrets/brunol-server.yaml$
