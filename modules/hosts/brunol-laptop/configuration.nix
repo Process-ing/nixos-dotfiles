@@ -8,14 +8,13 @@
       temp-system
 
       # System profile
-      system-server
+      system-desktop
 
       # Hardware configuration
       ../../../generated/hosts/brunol-laptop/hardware-configuration.nix
 
       # Users
       brunol
-      zygarde
     ];
   };
 }

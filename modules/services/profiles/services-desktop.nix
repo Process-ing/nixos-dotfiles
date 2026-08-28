@@ -1,10 +1,12 @@
 { self, ... }:
 
 {
-  flake.modules.nixos.services-desktop = with self.modules.nixos; [
-    services-console
+  flake.modules.nixos.services-desktop = {
+    imports = with self.modules.nixos; [
+      services-console
 
-    wifi
-    network-powersaving
-  ];
+      wifi
+      network-powersaving
+    ];
+  };
 }
