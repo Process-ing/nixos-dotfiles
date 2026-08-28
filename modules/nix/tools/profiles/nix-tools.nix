@@ -3,15 +3,14 @@
 {
   flake.modules.nixos.nix-tools = {
     imports = with self.modules.nixos; [
-      home-manager
-      sops
+      nix-tools-minimal
       nix-index-database
     ];
   };
 
   flake.modules.homeManager.nix-tools = {
     imports = with self.modules.homeManager; [
-      home-manager
+      nix-tools-minimal
     ];
   };
 }

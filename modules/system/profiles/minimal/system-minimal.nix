@@ -6,6 +6,7 @@
     imports = with self.modules.nixos; [
       settings-minimal
       nix-store
+      nix-tools-minimal
       self.modules.generic.constants  # Allow constants usage
     ];
 
@@ -19,8 +20,8 @@
 
   # Minimal configuration for Home Manager
   flake.modules.homeManager.system-minimal = {
-    imports = [
-      self.modules.homeManager.home-manager
+    imports = with self.modules.homeManager; [
+      nix-tools-minimal
       self.modules.generic.constants         # Allow constants usage
     ];
   };
