@@ -11,7 +11,7 @@
       system-server
 
       # Hardware configuration
-      ../../../gen-modules/hosts/brunol-laptop/hardware-configuration.nix
+      ../../../generated/hosts/brunol-laptop/hardware-configuration.nix
 
       # Users
       brunol
