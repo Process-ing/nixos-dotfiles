@@ -1,7 +1,7 @@
 { self, ... }:
 
 {
-  flake.modules.nixos.brunol-server = { pkgs, ... }: {
+  flake.modules.nixos.brunol-laptop = { pkgs, ... }: {
     imports = with self.modules.nixos; [
       temp-de
       temp-display-conf
@@ -11,7 +11,7 @@
       system-server
 
       # Hardware configuration
-      ../../../gen-modules/hosts/brunol-server/hardware-configuration.nix
+      ../../../gen-modules/hosts/brunol-laptop/hardware-configuration.nix
 
       # Users
       brunol
