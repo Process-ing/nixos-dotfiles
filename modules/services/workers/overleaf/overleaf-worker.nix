@@ -75,6 +75,10 @@
       SERVER_PRO=false
       OVERLEAF_LISTEN_IP=127.0.0.1
       OVERLEAF_PORT=${toString cfg.port}
+      
+      # Sibling Containers
+      SIBLING_CONTAINERS_ENABLED=false
+      DOCKER_SOCKET_PATH=/var/run/docker.sock
 
       # Mongo configuration
       MONGO_ENABLED=true
