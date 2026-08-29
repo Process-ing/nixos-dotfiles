@@ -193,6 +193,7 @@
       services.nginx.virtualHosts.${cfg.domain} = self.lib.mkNginxHost config {
         locations."/" = {
           proxyPass = "http://localhost:${toString cfg.port}";
+          proxyWebsockets = true;
         };
       };
     };
