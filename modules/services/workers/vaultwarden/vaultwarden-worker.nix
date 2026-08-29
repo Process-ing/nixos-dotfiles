@@ -4,7 +4,7 @@
   flake.modules.nixos.vaultwarden-worker = { config, lib, ... }: let
     cfg = config.workers.vaultwarden;
 
-    volumeFolder = "/tmp/vaultwarden";
+    volumeFolder = "/mnt/raid1/vaultwarden";
   in {
     options.workers.vaultwarden = self.lib.mkWebsiteWorkerOptions "vaultwarden";
 

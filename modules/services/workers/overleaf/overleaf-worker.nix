@@ -11,7 +11,7 @@
       sha256 = "sha256-RYLVMJOWqSHzNN267DQ/hg92U/mtmOhGDUJB25pwT0M=";
     };
 
-    volumeBaseFolder = "/tmp/overleaf";
+    volumeBaseFolder = "/mnt/raid1/overleaf";
 
     volumePermissions = {
       user = "overleaf";

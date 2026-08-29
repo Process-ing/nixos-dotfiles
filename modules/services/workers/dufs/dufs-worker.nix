@@ -4,7 +4,7 @@
   flake.modules.nixos.dufs-worker = { config, lib, ... }: let 
     cfg = config.workers.dufs;
 
-    volumeFolder = "/tmp/dufs";
+    volumeFolder = "/mnt/raid1/dufs";
   in {
     options.workers.dufs = self.lib.mkWebsiteWorkerOptions "dufs";
 
