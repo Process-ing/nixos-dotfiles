@@ -7,8 +7,9 @@
 
   flake.modules.homeManager.cli = {
     imports = with self.modules.homeManager; [
-      git
+      zsh
       fastfetch
+      git
     ];
   };
 }
