@@ -111,7 +111,7 @@
       };
 
       # Create configuration
-      sops.templates."workers/overleaf/variables.env" = 
+      sops.templates."workers/overleaf/variables.env" = {
         content = mkVariablesEnv config;
       };
 
