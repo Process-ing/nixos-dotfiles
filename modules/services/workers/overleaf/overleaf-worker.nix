@@ -14,9 +14,7 @@
     volumeBaseFolder = "/mnt/raid1/overleaf";
 
     volumePermissions = {
-      user = "overleaf";
-      group = "overleaf";
-      mode = "0755";
+      mode = "0700";
     };
 
     volumeOwnership = {
@@ -97,7 +95,6 @@
       # Make script use rootless Podman as Docker
       shopt -s expand_aliases
       alias docker=podman
-      export DOCKER_HOST="unix:///run/user/$(id -u)/podman/podman.sock"
     '';
   in {
     options.workers.overleaf = self.lib.mkWebsiteWorkerOptions "Overleaf";
@@ -114,13 +111,11 @@
       };
 
       # Create configuration
-      sops.templates."workers/overleaf/variables.env" = {
-        owner = "overleaf";
+      sops.templates."workers/overleaf/variables.env" = 
         content = mkVariablesEnv config;
       };
 
       sops.templates."workers/overleaf/overleaf.rc" = {
-        owner = "overleaf";
         content = mkOverleafRc;
       };
 
@@ -129,15 +124,12 @@
         "10-overleaf" = {
           "${volumeBaseFolder}/data" = {
             d = volumePermissions;
-            Z = volumeOwnership;    # Z used to fix ownership on the volumes recursively
           };
           "${volumeBaseFolder}/mongo" = {
             d = volumePermissions;
-            Z = volumeOwnership;
           };
           "${volumeBaseFolder}/redis" = {
             d = volumePermissions;
-            Z = volumeOwnership;
           };
         };
       };
@@ -150,8 +142,6 @@
         path = [ pkgs.openssl pkgs.bash pkgs.podman pkgs.docker-compose ];
         serviceConfig = {
           Type = "simple";
-          User = "overleaf";
-          Group = "overleaf";
           TimeoutStopSec = "1200s";
         };
 
