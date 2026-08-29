@@ -25,6 +25,7 @@
       # Add container build step
       systemd.services.podman-jmm = {
         path = [ pkgs.podman ];
+        startLimitBurst = 5;
 
         preStart = lib.mkAfter ''
           podman build -t jmm ${pkgs.jmm-website}/share/jmm-website
