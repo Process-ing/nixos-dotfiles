@@ -20,7 +20,7 @@
       syntaxHighlighting.enable = true;
 
       history.ignorePatterns = [ "rm *" "pkill *" ];
-      
+
       # Oh My Zsh configuration
       oh-my-zsh = {
         enable = true;
@@ -28,6 +28,9 @@
         custom = "${config.home.homeDirectory}/.oh-my-zsh/custom";
         theme = "powerlevel10k/powerlevel10k";
       };
+
+      # Start shell with fastfetch
+      initContent = "${pkgs.fastfetch}/bin/fastfetch";
     };
   };
 }
