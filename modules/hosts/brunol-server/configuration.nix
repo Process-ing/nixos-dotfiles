@@ -8,7 +8,7 @@
       system-server
 
       # Hardware configuration
-      ../../../generated/hosts/brunol-server/hardware-configuration.nix
+      ./_hardware-configuration.nix
 
       # Users
       zygarde

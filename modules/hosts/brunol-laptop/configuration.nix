@@ -11,7 +11,7 @@
       system-desktop
 
       # Hardware configuration
-      ../../../generated/hosts/brunol-laptop/hardware-configuration.nix
+      ./_hardware-configuration.nix
 
       # Users
       brunol
