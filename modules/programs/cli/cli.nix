@@ -4,6 +4,7 @@
   flake.modules.nixos.cli = {
     imports = with self.modules.nixos; [
       zsh
+      noto-fonts
     ];
   };
 
