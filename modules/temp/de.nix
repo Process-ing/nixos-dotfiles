@@ -19,7 +19,6 @@
     
     # Install extra packages
     environment.systemPackages = with pkgs; [
-      kitty
       brightnessctl
       vscodium
     ];
