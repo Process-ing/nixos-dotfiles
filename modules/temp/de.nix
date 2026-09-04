@@ -21,6 +21,7 @@
     environment.systemPackages = with pkgs; [
       brightnessctl
       vscodium
+      pavucontrol
     ];
 
     # Enable natural scrolling
