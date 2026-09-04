@@ -15,6 +15,9 @@
 
       # Users
       brunol
+
+      # Fix timezone
+      locale-brunol-laptop
     ];
   };
 }
