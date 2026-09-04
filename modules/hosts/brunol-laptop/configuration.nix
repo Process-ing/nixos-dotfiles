@@ -17,7 +17,7 @@
       brunol
 
       # Fix timezone
-      locale-brunol-laptop
+      locale-laptop
     ];
   };
 }

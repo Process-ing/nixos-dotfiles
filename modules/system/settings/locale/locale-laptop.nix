@@ -1,7 +1,7 @@
 { self, ... }:
 
 {
-  flake.modules.nixos.locale-brunol-laptop = { lib, ... }: {
+  flake.modules.nixos.locale-laptop = { lib, ... }: {
     imports = [
       self.modules.nixos.locale
     ];
