@@ -6,6 +6,7 @@
       ssh
       podman
       network
+      powersaving
     ];
   };
 }
