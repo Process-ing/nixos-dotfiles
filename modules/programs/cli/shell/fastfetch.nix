@@ -1,38 +1,118 @@
 {
-  flake.modules.homeManager.fastfetch = {
+  flake.modules.homeManager.fastfetch = let
+    percent = {
+      type = 3;
+      green = 50;
+      yellow = 80;
+    };
+  in {
     programs.fastfetch = {
       enable = true;
 
-      # settings = {
-      #   logo = {
-      #     source = "nixos_small";
-      #     padding = {
-      #       right = 1;
-      #     };
-      #   };
-      #   display = {
-      #     size = {
-      #       binaryPrefix = "si";
-      #     };
-      #     color = "blue";
-      #     separator = "  ";
-      #   };
-      #   modules = [
-      #     {
-      #       type = "datetime";
-      #       key = "Date";
-      #       format = "{1}-{3}-{11}";
-      #     }
-      #     {
-      #       type = "datetime";
-      #       key = "Time";
-      #       format = "{14}:{17}:{20}";
-      #     }
-      #     "break"
-      #     "player"
-      #     "media"
-      #   ];
-      # };
+      settings = {
+        display = {
+          separator = " ";
+          brightColor = true;
+
+          color = {
+            keys = "";
+            title = "white";
+            output = "white";
+          };
+        };
+
+        modules = [
+          {
+            type = "title";
+            key = "  Login";
+            keyColor = "blue";
+          }
+          {
+            type = "break";
+          }
+          {
+            type = "os";
+            key = "  OS";
+            keyColor = "cyan";
+          }
+          {
+            type = "kernel";
+            key = "├─   Kernel";
+            keyColor = "cyan";
+          }
+          {
+            type = "locale";
+            key = "├─   Locale";
+            keyColor = "cyan";
+          }
+          {
+            type = "packages";
+            key = "└─   Packages";
+            keyColor = "cyan";
+          }
+          {
+            type = "break";
+          }
+          {
+            type = "chassis";
+            key = "  PC";
+            keyColor = "blue";
+          }
+          {
+            type = "board";
+            key = "├─   Board";
+            keyColor = "blue";
+          }
+          {
+            type = "bios";
+            key = "├─ BIOS";
+            keyColor = "blue";
+          }
+          {
+            type = "cpu";
+            key = "├─ CPU";
+            keyColor = "blue";
+            temp = true;
+          }
+          {
+            type = "gpu";
+            key = "├─ GPU {1}";
+            keyColor = "blue";
+            temp = true;
+          }
+          {
+            type = "display";
+            key = "├─ Display";
+            keyColor = "blue";
+          }
+          {
+            type = "sound";
+            key = "├─ Sound";
+            keyColor = "blue";
+          }
+          {
+            type = "disk";
+            key = "├─ Disk";
+            keyColor = "blue";
+            format = "{size-percentage-bar} {size-used} / {size-total} [{filesystem}] ({mountpoint})";
+            inherit percent;
+          }
+          {
+            type = "memory";
+            key = "├─ RAM";
+            keyColor = "blue";
+            format = "{percentage-bar} {used} / {total}";
+            inherit percent;
+          }
+          {
+            type = "swap";
+            key = "└─ Swap";
+            keyColor = "blue";
+            format = "{percentage-bar} {used} / {total}";
+            inherit percent;
+          }
+        ];
+      };
     };
   };
 }
