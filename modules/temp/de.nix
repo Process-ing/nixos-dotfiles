@@ -1,14 +1,6 @@
 {
-  flake.modules.nixos.temp-de = { pkgs, ... }:
-  {
-    # Enable the X11 windowing system.
-    services.xserver = {
-      enable = true;
-      windowManager.i3.enable = true;  
-    };
-    services.displayManager.defaultSession = "none+i3";
-
-
+  flake.modules.nixos.temp-de = { pkgs, ... }: {
+    
     # Enable sound.
     # services.pulseaudio.enable = true;
     # OR
