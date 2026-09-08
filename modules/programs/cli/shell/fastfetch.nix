@@ -58,16 +58,16 @@
             key = "  PC";
             keyColor = "blue";
           }
-          {
-            type = "board";
-            key = "├─   Board";
-            keyColor = "blue";
-          }
-          {
-            type = "bios";
-            key = "├─ BIOS";
-            keyColor = "blue";
-          }
+          # {
+          #   type = "board";
+          #   key = "├─   Board";
+          #   keyColor = "blue";
+          # }
+          # {
+          #   type = "bios";
+          #   key = "├─ BIOS";
+          #   keyColor = "blue";
+          # }
           {
             type = "cpu";
             key = "├─ CPU";
@@ -110,6 +110,42 @@
             keyColor = "blue";
             format = "{percentage-bar} {used} / {total}";
             inherit percent;
+          }
+          {
+            type = "break";
+          }
+          {
+            type = "custom";
+            format = "Network";
+            color = "cyan";
+          }
+          {
+            type = "wifi";
+            key = "├─ Wifi";
+            keyColor = "cyan";
+          }
+          {
+            type = "localip";
+            key = "├─ IP";
+            keyColor = "cyan";
+          }
+          {
+            type = "publicip";
+            key = "├─ Public IP";
+            keyColor = "cyan";
+          }
+          {
+            type = "bluetooth";
+            key = "├─ Bluetooth Dev";
+            keyColor = "cyan";
+          }
+          {
+            type = "dns";
+            key = "└─ DNS"; 
+            keyColor = "cyan";
+          }
+          {
+            type = "break";
           }
         ];
       };
