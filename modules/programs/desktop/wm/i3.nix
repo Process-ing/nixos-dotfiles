@@ -20,6 +20,8 @@
 
         modifier = "Mod4";
 
+        defaultWorkspace = "workspace number 1";
+
         keybindings = let
           mod = config.xsession.windowManager.i3.config.modifier;
         in lib.mkOptionDefault {
