@@ -51,6 +51,11 @@
             keyColor = "cyan";
           }
           {
+            type = "uptime";
+            key = "└─ Uptime";
+            keyColor = "cyan";
+          }
+          {
             type = "break";
           }
           {
@@ -91,6 +96,11 @@
             keyColor = "blue";
           }
           {
+            type = "battery";
+            key = "├─ Battery";
+            keyColor = "blue";
+          }
+          {
             type = "disk";
             key = "├─ Disk";
             keyColor = "blue";
@@ -116,12 +126,16 @@
           }
           {
             type = "custom";
-            format = "Network";
-            color = "cyan";
+            format = "{#cyan}Network{#}";
           }
           {
             type = "wifi";
             key = "├─ Wifi";
+            keyColor = "cyan";
+          }
+          {
+            type = "bluetooth";
+            key = "├─ Bluetooth Dev";
             keyColor = "cyan";
           }
           {
@@ -131,21 +145,51 @@
           }
           {
             type = "publicip";
-            key = "├─ Public IP";
-            keyColor = "cyan";
-          }
-          {
-            type = "bluetooth";
-            key = "├─ Bluetooth Dev";
-            keyColor = "cyan";
-          }
-          {
-            type = "dns";
-            key = "└─ DNS"; 
+            key = "└─ Public IP";
             keyColor = "cyan";
           }
           {
             type = "break";
+          }
+          {
+            type = "de";
+            key = "Desktop";
+            keyColor = "blue";
+          }
+          {
+            type = "wm";
+            key = "├─ Window Manager";
+            keyColor = "blue";
+          }
+          {
+            type = "lm";
+            key = "├─ Login Manager";
+            keyColor = "blue";
+          }
+          {
+            type = "wmtheme";
+            key = "├─ WM Theme";
+            keyColor = "blue";
+          }
+          {
+            type = "theme";
+            key = "├─ Color Theme";
+            keyColor = "blue";
+          }
+          {
+            type = "icons";
+            key = "├─ System Icons";
+            keyColor = "blue";
+          }
+          {
+            type = "font";
+            key = "├─ System Font";
+            keyColor = "blue";
+          }
+          {
+            type = "terminal";
+            key = "└─ Terminal";
+            keyColor = "blue";
           }
         ];
       };
