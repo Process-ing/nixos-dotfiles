@@ -47,7 +47,7 @@
           }
           {
             type = "packages";
-            key = "└─   Packages";
+            key = "├─   Packages";
             keyColor = "cyan";
           }
           {
@@ -126,7 +126,7 @@
           }
           {
             type = "custom";
-            format = "{#cyan}Network{#}";
+            format = "{#bold_cyan}Network{#}";
           }
           {
             type = "wifi";
