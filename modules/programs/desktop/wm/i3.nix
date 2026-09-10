@@ -20,13 +20,16 @@
 
         modifier = "Mod4";
 
-        defaultWorkspace = "workspace number 1";
-
         keybindings = let
           mod = config.xsession.windowManager.i3.config.modifier;
         in lib.mkOptionDefault {
           "${mod}+Return" = "exec kitty";
         };
+
+        workspaceOutputAssign = [
+          { output = "eDP-1";  workspace = "1"; }
+          { output = "DP-1-1"; workspace = "2"; }
+        ];
 
         gaps.inner = 15;
       };
