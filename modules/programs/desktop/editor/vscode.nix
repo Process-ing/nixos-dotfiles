@@ -18,6 +18,15 @@
             catppuccin.catppuccin-vsc
             catppuccin.catppuccin-vsc-icons
           ];
+
+          userSettings = {
+            workbench = {
+              colorTheme = "Catppuccin Mocha";
+              iconTheme = "Catppuccin Mocha";
+            };
+
+            "window.zoomLevel" = 2;
+          };
         };
       };
     };
