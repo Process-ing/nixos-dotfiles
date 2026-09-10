@@ -1,6 +1,6 @@
 {
   flake.modules.nixos.temp-de = { pkgs, ... }: {
-    
+
     # Enable sound.
     # services.pulseaudio.enable = true;
     # OR
@@ -8,7 +8,7 @@
       enable = true;
       pulse.enable = true;
     };
-    
+
     # Install extra packages
     environment.systemPackages = with pkgs; [
       brightnessctl

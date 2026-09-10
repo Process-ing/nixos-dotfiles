@@ -19,7 +19,7 @@
                 };
               };
               root = {
-                end = "-4G";  # Swap size
+                end = "-4G"; # Swap size
                 content = {
                   type = "filesystem";
                   format = "ext4";

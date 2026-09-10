@@ -8,7 +8,7 @@
     users.defaultUserShell = pkgs.zsh;
   };
 
-  flake.modules.homeManager.zsh = { config, pkgs, ...}: {
+  flake.modules.homeManager.zsh = { config, pkgs, ... }: {
     imports = with self.modules.homeManager; [
       powerlevel10k
     ];
@@ -19,7 +19,10 @@
       autosuggestion.enable = true;
       syntaxHighlighting.enable = true;
 
-      history.ignorePatterns = [ "rm *" "pkill *" ];
+      history.ignorePatterns = [
+        "rm *"
+        "pkill *"
+      ];
 
       # Oh My Zsh configuration
       oh-my-zsh = {

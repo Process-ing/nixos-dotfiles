@@ -2,7 +2,7 @@
   flake.modules.nixos.podman = { pkgs, ... }: {
     virtualisation.podman = {
       enable = true;
-      dockerCompat = true;  # Create symlink from `docker` to `podman`
+      dockerCompat = true; # Create symlink from `docker` to `podman`
       dockerSocket.enable = true;
       defaultNetwork.settings.dns_enabled = true;
     };

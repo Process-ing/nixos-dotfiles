@@ -2,7 +2,7 @@
   flake.modules.nixos.i3 = {
     services.xserver = {
       enable = true;
-      windowManager.i3.enable = true;  
+      windowManager.i3.enable = true;
     };
 
     # Set i3 as the default window manager
@@ -15,20 +15,31 @@
 
       config = {
         startup = [
-          { command = "autorandr -c"; always = true; }
+          {
+            command = "autorandr -c";
+            always = true;
+          }
         ];
 
         modifier = "Mod4";
 
-        keybindings = let
-          mod = config.xsession.windowManager.i3.config.modifier;
-        in lib.mkOptionDefault {
-          "${mod}+Return" = "exec kitty";
-        };
+        keybindings =
+          let
+            mod = config.xsession.windowManager.i3.config.modifier;
+          in
+          lib.mkOptionDefault {
+            "${mod}+Return" = "exec kitty";
+          };
 
         workspaceOutputAssign = [
-          { output = "eDP-1";  workspace = "1"; }
-          { output = "DP-1-1"; workspace = "2"; }
+          {
+            output = "eDP-1";
+            workspace = "1";
+          }
+          {
+            output = "DP-1-1";
+            workspace = "2";
+          }
         ];
 
         gaps.inner = 15;

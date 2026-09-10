@@ -1,26 +1,28 @@
 { self, ... }:
 
 {
-  flake.modules.nixos.eduroam = { config, lib, ... }: lib.mkMerge [
-    {
-      # Declare eduroam secrets
-      sops.secrets = {
-        "wifi/eduroam/identity" = {};
-        "wifi/eduroam/password" = {};
-      };
-    }
+  flake.modules.nixos.eduroam =
+    { config, lib, ... }:
+    lib.mkMerge [
+      {
+        # Declare eduroam secrets
+        sops.secrets = {
+          "wifi/eduroam/identity" = { };
+          "wifi/eduroam/password" = { };
+        };
+      }
 
-    # Declare Wi-Fi config
-    (self.lib.mkWifiBase "eduroam" false ''
-      
-      [wifi-security]
-      key-mgmt=wpa-eap
+      # Declare Wi-Fi config
+      (self.lib.mkWifiBase "eduroam" false ''
 
-      [802-1x]
-      eap=peap;
-      identity=${config.sops.placeholder."wifi/eduroam/identity"}
-      password=${config.sops.placeholder."wifi/eduroam/password"}
-      phase2-auth=mschapv2
-    '')
-  ];
+        [wifi-security]
+        key-mgmt=wpa-eap
+
+        [802-1x]
+        eap=peap;
+        identity=${config.sops.placeholder."wifi/eduroam/identity"}
+        password=${config.sops.placeholder."wifi/eduroam/password"}
+        phase2-auth=mschapv2
+      '')
+    ];
 }

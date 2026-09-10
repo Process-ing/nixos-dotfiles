@@ -26,7 +26,10 @@
           hashedPasswordFile = config.sops.secrets."users/${username}/password_hash".path;
 
           # Give user sudo permissions, along with others
-          extraGroups = [ "wheel" "network" ];
+          extraGroups = [
+            "wheel"
+            "network"
+          ];
         };
 
         # Add Home Manager configuration
@@ -49,34 +52,37 @@
 
         # Import Home Manager profile
         imports = [ self.modules.homeManager."system-${homeProfile}" ];
-      
+
         # Define username
         home.username = "${username}";
       };
     };
 
     # Creates SSH keys for the user
-    mkSshUser = username: let
-      identityFilePath = "/home/${username}/.secrets/id_ed25519";
-    in {
-      nixos.${username} = { config, ... }: {
+    mkSshUser =
+      username:
+      let
+        identityFilePath = "/home/${username}/.secrets/id_ed25519";
+      in
+      {
+        nixos.${username} = { config, ... }: {
 
-        # Declare identity file secret
-        sops.secrets."users/${username}/private_ssh_key" = {
-          owner = "${username}";
-          path = identityFilePath;
+          # Declare identity file secret
+          sops.secrets."users/${username}/private_ssh_key" = {
+            owner = "${username}";
+            path = identityFilePath;
+          };
+        };
+
+        homeManager.${username} = { config, ... }: {
+
+          # Include Home Manager module
+          imports = [ self.modules.homeManager.ssh ];
+
+          # Add identity file to configuration
+          programs.ssh.settings."*".IdentityFile = identityFilePath;
         };
       };
-
-      homeManager.${username} = { config, ... }: {
-
-        # Include Home Manager module
-        imports = [ self.modules.homeManager.ssh ];
-
-        # Add identity file to configuration
-        programs.ssh.settings."*".IdentityFile = identityFilePath;
-      };
-    };
 
     # Defines git user settings
     mkGitUser = username: gitName: gitEmailId: {

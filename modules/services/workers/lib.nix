@@ -30,14 +30,16 @@ in
       domain = mkDomainOption;
     };
 
-    mkNginxHost = config: extraOptions: lib.mkMerge [
-      {
-        forceSSL = true;
-        sslCertificate = config.sops.secrets."nginx/ssl_certificate".path;
-        sslCertificateKey = config.sops.secrets."nginx/ssl_certificate_key".path;
-      }
+    mkNginxHost =
+      config: extraOptions:
+      lib.mkMerge [
+        {
+          forceSSL = true;
+          sslCertificate = config.sops.secrets."nginx/ssl_certificate".path;
+          sslCertificateKey = config.sops.secrets."nginx/ssl_certificate_key".path;
+        }
 
-      extraOptions
-    ];
+        extraOptions
+      ];
   };
 }

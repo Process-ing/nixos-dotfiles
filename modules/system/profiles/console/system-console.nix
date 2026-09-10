@@ -7,7 +7,7 @@
 
       settings-console
       services-console
-      
+
       nix-tools
       cli
       tui

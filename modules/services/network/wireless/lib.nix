@@ -12,7 +12,7 @@
           [connection]
           id=${ssid}
           type=wifi
-          
+
           [wifi]${lib.optionalString isHidden "\nhidden=true"}
           mode=infrastructure
           ssid=${ssid}
@@ -25,25 +25,29 @@
           method=auto
 
           [proxy]
-        '' + configSuffix;
+        ''
+        + configSuffix;
       };
     };
 
     # Create a standard secure Wi-Fi profile
     # There must be present a secret "wifi/<ssid>" with the Wi-Fi password
-    mkWifi = ssid: isHidden: { config, ... }: lib.mkMerge [
-      {
-        # Declare Wi-Fi password secret
-        sops.secrets."wifi/${ssid}" = {};
-      }
+    mkWifi =
+      ssid: isHidden:
+      { config, ... }:
+      lib.mkMerge [
+        {
+          # Declare Wi-Fi password secret
+          sops.secrets."wifi/${ssid}" = { };
+        }
 
-      (self.lib.mkWifiBase ssid isHidden ''
+        (self.lib.mkWifiBase ssid isHidden ''
 
-        [wifi-security]
-        auth-alg=open
-        key-mgmt=wpa-psk
-        psk=${config.sops.placeholder."wifi/${ssid}"}
-      '')
-    ]; 
+          [wifi-security]
+          auth-alg=open
+          key-mgmt=wpa-psk
+          psk=${config.sops.placeholder."wifi/${ssid}"}
+        '')
+      ];
   };
 }

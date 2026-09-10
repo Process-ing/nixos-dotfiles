@@ -1,4 +1,9 @@
-{ inputs, lib, self, ... }:
+{
+  inputs,
+  lib,
+  self,
+  ...
+}:
 
 {
   config.flake.lib = {

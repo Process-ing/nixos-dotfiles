@@ -6,16 +6,21 @@
       useDHCP = false;
 
       # Set server static IP
-      interfaces.eth0.ipv4.addresses = [{
-        address = "192.168.1.42";
-        prefixLength = 24;
-      }];
+      interfaces.eth0.ipv4.addresses = [
+        {
+          address = "192.168.1.42";
+          prefixLength = 24;
+        }
+      ];
 
       # Configure default gateway
       defaultGateway = "192.168.1.1";
 
       # Enable portforwarding
-      firewall.allowedTCPPorts = [ 80 443 ];
+      firewall.allowedTCPPorts = [
+        80
+        443
+      ];
     };
   };
 }

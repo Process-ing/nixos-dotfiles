@@ -6,7 +6,7 @@
     # Prevent rfkill blocking bluetooth
     system.activationScripts = {
       rfkillUnblockBluetooth = {
-        deps = [];
+        deps = [ ];
         text = ''
           rfkill unblock bluetooth
         '';

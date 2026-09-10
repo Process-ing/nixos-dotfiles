@@ -11,7 +11,7 @@
       jmm-worker
       cloudflare-ddns-worker
 
-      system-user-registry  # Dependency
+      system-user-registry # Dependency
     ];
 
     # Define SSL secrets
@@ -19,12 +19,11 @@
       "nginx/ssl_certificate" = {
         owner = "nginx";
       };
-    
+
       "nginx/ssl_certificate_key" = {
         owner = "nginx";
       };
     };
-
 
     # Configure services
 
