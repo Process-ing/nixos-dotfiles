@@ -9,9 +9,10 @@
 
   flake.modules.homeManager.cli = {
     imports = with self.modules.homeManager; [
-      zsh
+      direnv
       fastfetch
       git
+      zsh
     ];
   };
 }
