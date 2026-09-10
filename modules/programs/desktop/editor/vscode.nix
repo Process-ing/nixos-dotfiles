@@ -12,22 +12,20 @@
       enable = true;
       package = pkgs.vscode.fhs;
 
-      profiles = {
-        default = {
-          extensions = with pkgs.vscode-extensions; [
-            catppuccin.catppuccin-vsc
-            catppuccin.catppuccin-vsc-icons
-          ];
+      profiles.default = {
+        extensions = with pkgs.vscode-extensions; [
+          catppuccin.catppuccin-vsc
+          catppuccin.catppuccin-vsc-icons
+        ];
 
-          userSettings = {
-            workbench = {
-              colorTheme = "Catppuccin Mocha";
-              iconTheme = "Catppuccin Mocha";
-            };
-
-            "window.zoomLevel" = 2;
-            "telemetry.telemetryLevel" = "off";
+        userSettings = {
+          workbench = {
+            colorTheme = "Catppuccin Mocha";
+            iconTheme = "Catppuccin Mocha";
           };
+
+          "window.zoomLevel" = 2;
+          "telemetry.telemetryLevel" = "off";
         };
       };
     };
