@@ -8,6 +8,7 @@
       "com.github.catppuccin.jetbrains"
       "com.github.catppuccin.jetbrains_icons"
       "com.github.copilot"
+      "org.jetbrains.fortran"
     ];
   in {
     home.packages = [
