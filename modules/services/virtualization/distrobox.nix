@@ -1,5 +1,5 @@
 {
-  flake.modules.homeManager.distrobox = { pkgs }: {
-    home.packages = [ pkgs.distrobox ];
+  flake.modules.nixos.distrobox = { pkgs, ... }: {
+    environment.systemPackages = [ pkgs.distrobox ];
   };
 }
