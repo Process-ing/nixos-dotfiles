@@ -12,6 +12,7 @@
     imports = with self.modules.homeManager; [
       i3
       firefox
+      intellij
       kitty
       vscode
     ];
