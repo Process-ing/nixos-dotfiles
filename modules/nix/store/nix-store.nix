@@ -1,7 +1,7 @@
 { self, ... }:
 
 {
-  flake.modules.nixos.nix-store = {
+  flake.modules.nixos.nix-store = { lib, ... }: {
 
     # Register NixOS overlays
     nixpkgs.overlays = [ self.overlays.default ];
@@ -15,5 +15,13 @@
       dates = "daily";
       options = "--delete-older-than 14d";
     };
+
+    # Whitelist unfree packages
+    nixpkgs.config.allowUnfreePredicate = pkg: builtins.elem (lib.getName pkg) [
+      "code"
+      "idea"
+      "idea-with-plugins"
+      "vscode"
+    ];
   };
 }
