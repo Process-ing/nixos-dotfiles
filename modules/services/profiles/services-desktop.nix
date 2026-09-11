@@ -7,6 +7,7 @@
 
       wifi
       network-powersaving
+      distrobox
     ];
   };
 }
