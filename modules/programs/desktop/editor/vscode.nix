@@ -16,8 +16,10 @@
             iconTheme = "catppuccin-mocha";
           };
 
-          "window.zoomLevel" = 2;
-          "telemetry.telemetryLevel" = "off";
+          catppuccin.accentColor = "blue";
+
+          window.zoomLevel = 2;
+          telemetry.telemetryLevel = "off";
         };
       };
     };
