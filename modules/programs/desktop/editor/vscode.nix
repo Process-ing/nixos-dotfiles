@@ -2,26 +2,21 @@
   flake.modules.homeManager.vscode = { pkgs, ... }: {
     programs.vscode = {
       enable = true;
-      package = pkgs.vscode.fhs;
 
       profiles.default = {
-        extensions = with pkgs.vscode-extensions; [
-          catppuccin.catppuccin-vsc
-          catppuccin.catppuccin-vsc-icons
-        ];
+        extensions = with pkgs.vscode-extensions; [ ];
 
         userSettings = {
-          workbench = {
-            colorTheme = "Catppuccin Mocha";
-            iconTheme = "catppuccin-mocha";
-          };
-
-          catppuccin.accentColor = "blue";
-
-          window.zoomLevel = 2;
-          telemetry.telemetryLevel = "off";
+          "window.zoomLevel" = 2;
+          "telemetry.telemetryLevel" = "off";
         };
       };
+    };
+
+    # Configure theme (Catppuccin)
+    catppuccin.vscode = {
+      accent = "blue";
+      settings = { };
     };
   };
 }

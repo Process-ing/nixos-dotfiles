@@ -9,6 +9,7 @@
 
   flake.modules.homeManager.desktop = {
     imports = with self.modules.homeManager; [
+      catppuccin
       firefox
       i3
       intellij
