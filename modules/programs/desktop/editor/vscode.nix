@@ -9,6 +9,7 @@
         ];
 
         userSettings = {
+          "files.autoSave" = "afterDelay";
           "window.zoomLevel" = 2;
           "telemetry.telemetryLevel" = "off";
         };
