@@ -13,7 +13,7 @@
         userSettings = {
           workbench = {
             colorTheme = "Catppuccin Mocha";
-            iconTheme = "Catppuccin Mocha";
+            iconTheme = "catppuccin-mocha";
           };
 
           "window.zoomLevel" = 2;
