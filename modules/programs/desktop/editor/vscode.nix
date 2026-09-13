@@ -16,7 +16,7 @@
     };
 
     # Configure theme (Catppuccin)
-    catppuccin.vscode = {
+    catppuccin.vscode.profiles.default = {
       accent = "blue";
       settings = { };
     };
