@@ -5,9 +5,10 @@
     imports = with self.modules.nixos; [
       services-console
 
-      wifi
-      network-powersaving
       distrobox
+      logind
+      network-powersaving
+      wifi
     ];
   };
 }
