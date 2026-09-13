@@ -4,7 +4,9 @@
       enable = true;
 
       profiles.default = {
-        extensions = with pkgs.vscode-extensions; [ ];
+        extensions = with pkgs.vscode-extensions; [
+          jnoortheen.nix-ide
+        ];
 
         userSettings = {
           "window.zoomLevel" = 2;
