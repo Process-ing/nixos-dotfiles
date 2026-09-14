@@ -3,9 +3,10 @@
 {
   flake.modules.nixos.nix-tools-minimal = {
     imports = with self.modules.nixos; [
-      home-manager
-      sops
       disko
+      home-manager
+      preservation
+      sops
     ];
   };
 
