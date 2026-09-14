@@ -5,7 +5,6 @@
     imports = with self.modules.nixos; [
       disko
       home-manager
-      preservation
       sops
     ];
   };
