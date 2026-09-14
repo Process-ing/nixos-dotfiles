@@ -13,8 +13,5 @@
       # Users
       zygarde
     ];
-
-    # Disable preservation
-    preservation.enable = false;
   };
 }

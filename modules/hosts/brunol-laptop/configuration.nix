@@ -19,8 +19,5 @@
       # Fix timezone
       locale-laptop
     ];
-
-    # Disable preservation
-    preservation.enable = false;
   };
 }
