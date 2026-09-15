@@ -8,7 +8,7 @@
       settings-console
       services-console
 
-      nix-tools
+      nix-tools-extra
       cli
       tui
     ];
@@ -18,7 +18,7 @@
     imports = with self.modules.homeManager; [
       system-minimal
 
-      nix-tools
+      nix-tools-extra
       cli
       tui
     ];
