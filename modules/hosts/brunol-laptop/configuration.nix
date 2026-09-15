@@ -5,7 +5,6 @@
     imports = with self.modules.nixos; [
       temp-de
       temp-display-conf
-      temp-system
 
       # System profile
       system-desktop
