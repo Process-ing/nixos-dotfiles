@@ -27,7 +27,7 @@
     };
   };
 
-  flake.modules.homeManager.impermanence = { osConfig }: {
+  flake.modules.homeManager.impermanence = { osConfig, ... }: {
     home.persistence."/persistent".enable = osConfig.impermanence.enable;
   }; 
 }
