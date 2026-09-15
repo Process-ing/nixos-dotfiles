@@ -9,12 +9,14 @@
 
   flake.modules.homeManager.desktop = {
     imports = with self.modules.homeManager; [
+      brightnessctl
       catppuccin
       distrobox-path
       firefox
       i3
       intellij
       kitty
+      pavucontrol
       vscode
     ];
   };

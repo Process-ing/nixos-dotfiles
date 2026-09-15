@@ -9,6 +9,7 @@
       distrobox
       logind
       network-powersaving
+      pipewire
       wifi
     ];
   };

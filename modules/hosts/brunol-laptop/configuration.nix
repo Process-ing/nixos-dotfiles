@@ -3,7 +3,6 @@
 {
   flake.modules.nixos.brunol-laptop = { pkgs, ... }: {
     imports = with self.modules.nixos; [
-      temp-de
       temp-display-conf
 
       # System profile
