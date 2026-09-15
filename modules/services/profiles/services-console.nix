@@ -9,4 +9,10 @@
       powersaving
     ];
   };
+
+  flake.modules.homeManager.services-console = {
+    imports = with self.modules.homeManager; [
+      podman
+    ];
+  };
 }
