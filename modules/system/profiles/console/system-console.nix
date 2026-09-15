@@ -18,7 +18,7 @@
     imports = with self.modules.homeManager; [
       system-minimal
 
-      settings-console
+      services-console
 
       nix-tools-extra
       cli

@@ -3,7 +3,7 @@
     home.persistence."/persistent" = {
       directories = [
         "nixos-dotfiles"
-      ]
+      ];
     };
   };
 }
