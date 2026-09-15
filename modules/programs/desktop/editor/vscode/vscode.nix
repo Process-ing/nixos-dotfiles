@@ -9,9 +9,14 @@
         ];
 
         userSettings = {
+          # Basic
           "files.autoSave" = "afterDelay";
-          "window.zoomLevel" = 2;
           "telemetry.telemetryLevel" = "off";
+
+          # Appearance
+          "editor.fontFamily" = "'FiraCode Nerd Font', 'Droid Sans Mono', monospace";
+          "editor.fontLigatures" = true;
+          "window.zoomLevel" = 2;
         };
       };
     };
