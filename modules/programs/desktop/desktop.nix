@@ -16,7 +16,6 @@
       distrobox-path
       firefox
       i3
-      intellij
       kitty
       pavucontrol
       vscode
