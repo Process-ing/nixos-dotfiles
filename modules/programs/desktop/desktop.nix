@@ -9,6 +9,8 @@
 
   flake.modules.homeManager.desktop = {
     imports = with self.modules.homeManager; [
+      arandr
+      autorandr
       brightnessctl
       catppuccin
       distrobox-path

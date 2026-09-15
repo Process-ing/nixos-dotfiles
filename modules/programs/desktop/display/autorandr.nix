@@ -1,14 +1,7 @@
 {
-  flake.modules.nixos.temp-display-conf =
+  flake.modules.nixos.autorandr =
     { pkgs, ... }:
-    {
-      # Install arandr and autorandr
-      environment.systemPackages = with pkgs; [
-        arandr
-        autorandr
-      ];
-
-      # autorandr config
+    {      
       services.autorandr = {
         enable = true;
 
