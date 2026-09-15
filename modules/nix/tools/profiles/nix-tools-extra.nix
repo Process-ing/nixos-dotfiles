@@ -9,7 +9,7 @@
   };
 
   flake.modules.homeManager.nix-tools-extra = {
-    imports = [
+    imports = with self.modules.homeManager; [
       impermanence
     ];
   };
