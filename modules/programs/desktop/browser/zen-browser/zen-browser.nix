@@ -8,6 +8,9 @@
       enable = true;
       setAsDefaultBrowser = true;
 
+      # Set native messaging hosts for browser-application communication
+      nativeMessagingHosts = [ pkgs.firefoxpwa ];
+
       profiles.default = {
         settings = {
           "zen.welcome-screen.seen" = true;
@@ -25,7 +28,7 @@
             icon = "fingerprint";
             id = 1;            
           };
-          "Uni" = {
+          "University" = {
             icon = "briefcase";
             id = 2;
           };
@@ -43,13 +46,13 @@
             id = "e8332184-35bf-4f71-a2b2-ce4cdcdecd1d";
             position = 2000;
             icon = "☦️";
-            container = 2; # Uni
+            container = 2; # University
           };
           "University" = {
             id = "f943dec4-f1e4-41aa-8095-d1d937e21297";
             position = 3000;
             icon = "🏛️";
-            container = 2; # Uni
+            container = 2; # University
           };
         };
 
@@ -72,16 +75,23 @@
           "Uni.Gemini" = {
             id = "f18441d1-840c-4ad2-b670-75b7ff9079f5";
             url = "https://gemini.google.com";
-            position = 103;
+            position = 201;
             isEssential = true;
-            container = 2; # Uni
+            container = 2; # University
           };
           "Uni.GitHub" = {
             id = "be638cf5-29f0-4aa0-816c-4d721f628a9a";
             url = "https://github.com";
-            position = 104;
+            position = 202;
             isEssential = true;
-            container = 2; # Uni
+            container = 2; # University
+          };
+          "Uni.GoogleDrive" = {
+            id = "eb94b073-003f-4a5d-ba77-e1c964574df1";
+            url = "https://drive.google.com";
+            position = 203;
+            isEssential = true;
+            container = 2; # University
           };
         };  
 
@@ -90,6 +100,13 @@
           enable = true;
           flavor = "Mocha";
           accent = "Blue";
+        };
+
+        # Set placement of extension buttons
+        extensionButtons = {
+          zen-sidebar-top-buttons = [
+            "{446900e4-71c2-419f-a6a7-df9c091e268b}" # Bitwarden
+          ];
         };
       };
 
