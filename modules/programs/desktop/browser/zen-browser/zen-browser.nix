@@ -11,16 +11,22 @@
       setAsDefaultBrowser = true;
 
       profiles = {
-        default.presets = {
-          # Set theme (Catppuccin)
-          catppuccin = {
-            enable = true;
-            flavor = "Mocha";
-            accent = "Blue";
-          };
+        default = {
+          presets = {
+            # Set theme (Catppuccin)
+            catppuccin = {
+              enable = true;
+              flavor = "Mocha";
+              accent = "Blue";
+            };
 
-          # Use Betterfox
-          betterfox.enable = true;
+            # Use Betterfox
+            betterfox.enable = true;
+          };
+        
+          settings = {
+            "zen.welcome-screen.seen" = true;
+          };
         };
       };
     };
