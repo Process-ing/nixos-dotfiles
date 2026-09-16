@@ -19,6 +19,7 @@
       kitty
       pavucontrol
       vscode
+      zen-browser
     ];
   };
 }
