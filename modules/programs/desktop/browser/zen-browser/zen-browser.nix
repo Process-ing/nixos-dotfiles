@@ -12,11 +12,15 @@
 
       profiles = {
         default.presets = {
+          # Set theme (Catppuccin)
           catppuccin = {
             enable = true;
             flavor = "Mocha";
             accent = "Blue";
           };
+
+          # Use Betterfox
+          betterfox.enable = true;
         };
       };
     };
