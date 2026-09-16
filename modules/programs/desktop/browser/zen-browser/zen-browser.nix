@@ -1,7 +1,7 @@
-{ inputs, ... }:
+{ inputs, self, ... }:
 
 {
-  flake.modules.homeManager.zen-browser = {
+  flake.modules.homeManager.zen-browser = { pkgs, ... }: {
     imports = [ inputs.zen-browser.homeModules.beta ];
 
     programs.zen-browser = {
@@ -91,6 +91,13 @@
           flavor = "Mocha";
           accent = "Blue";
         };
+      };
+
+      # Add extensions
+      policies.ExtensionSettings = self.lib.mkExtensionSettings {
+        "uBlock0@raymondhill.net" = "ublock-origin";
+        "{446900e4-71c2-419f-a6a7-df9c091e268b}" = "bitwarden-password-manager";
+        "87677a2c52b84ad3a151a4a72f5bd3c4@jetpack" = "grammarly-1";
       };
     };
   };
