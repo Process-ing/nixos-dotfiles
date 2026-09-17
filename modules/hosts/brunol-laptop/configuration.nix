@@ -8,6 +8,7 @@
 
       # Hardware configuration
       ./_hardware-configuration.nix
+      # impermanence-rollback # Rollback root for impermanent setup
 
       # Users
       brunol
