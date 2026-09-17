@@ -4,7 +4,17 @@
     environment.systemPackages = [ pkgs.btrfs-progs ];
 
     # Create boot process to rollback root
-    boot.initrd.postResumeCommands = lib.mkAfter ''
+    boot.initrd.systemd = {
+      enable = true;
+      services.rollback = {
+description = "Rollback BTRFS root subvolume to a pristine state";
+wantedBy = [ "initrd.target" ];
+after = [ "systemd-cryptsetup@root.service" ];
+before = [ "sysroot.mount" ];
+
+unitConfig.DefaultDependencies = "no";
+serviceConfig.Type = "oneshot";
+      script = ''
       mkdir /btrfs_tmp
       mount /dev/mapper/root /btrfs_tmp
       if [[ -e /btrfs_tmp/root ]]; then
@@ -27,5 +37,7 @@
 
       btrfs subvolume create /btrfs_tmp/root
     '';
+      };
+    };
   };
 }
