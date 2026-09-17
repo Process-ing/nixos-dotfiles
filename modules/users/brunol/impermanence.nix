@@ -1,12 +1,12 @@
+{ self, ... }:
+
 {
-  flake.modules.homeManager.brunol = {
-    home.persistence."/persistent" = {
-      directories = [
-        "erasmus"
-        "nixos-dotfiles"
-        "specs"
-        "staging"
-      ];
-    };
+  flake.modules.homeManager.brunol = self.lib.mkHomePersist {
+    directories = [
+      "erasmus"
+      "nixos-dotfiles"
+      "specs"
+      "staging"
+    ];
   };
 }

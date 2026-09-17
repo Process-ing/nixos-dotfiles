@@ -1,9 +1,9 @@
+{ self, ... }:
+
 {
-  flake.modules.homeManager.vscode = {
-    home.persistence."/persistent" = {
-      directories = [
-        ".vscode/extensions"
-      ];
-    };
+  flake.modules.homeManager.vscode = self.lib.mkHomePersist {
+    directories = [
+      ".vscode/extensions"
+    ];
   };
 }

@@ -1,9 +1,9 @@
+{ self, ... }:
+
 {
-  flake.modules.nixos.bluetooth = {
-    environment.persistence."/persistent" = {
-      directories = [
-        "/var/lib/bluetooth"
-      ];
-    };
+  flake.modules.nixos.bluetooth = self.lib.mkPersist {
+    directories = [
+      "/var/lib/bluetooth"
+    ];
   };
 }

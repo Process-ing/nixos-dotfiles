@@ -1,9 +1,9 @@
+{ self, ... }:
+
 {
-  flake.modules.homeManager.zen-browser = {
-    home.persistence."/persistent" = {
-      directories = [
-        ".config/zen"
-      ];
-    };
+  flake.modules.homeManager.zen-browser = self.lib.mkHomePersist {
+    directories = [
+      ".config/zen"
+    ];
   };
 }

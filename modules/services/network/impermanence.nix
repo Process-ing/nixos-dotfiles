@@ -1,9 +1,9 @@
+{ self, ... }:
+
 {
-  flake.modules.nixos.network = {
-    environment.persistence."/persistent" = {
-      directories = [
-        "/etc/NetworkManager/system-connections"
-      ];
-    };
+  flake.modules.nixos.network = self.lib.mkPersist {
+    directories = [
+      "/etc/NetworkManager/system-connections"
+    ];
   };
 }

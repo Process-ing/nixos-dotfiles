@@ -1,9 +1,9 @@
+{ self, ... }:
+
 {
-  flake.modules.homeManager.zsh = {
-    home.persistence."/persistent" = {
-      files = [
-        ".zsh_history"
-      ];
-    };
+  flake.modules.homeManager.zsh = self.lib.mkHomePersist {
+    files = [
+      ".zsh_history"
+    ];
   };
 }

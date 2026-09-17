@@ -1,10 +1,10 @@
+{ self, ... }:
+
 {
-  flake.modules.homeManager.opencode = {
-    home.persistence."/persistent" = {
-      directories = [
-        ".local/share/opencode"
-        ".local/state/opencode"
-      ];
-    };
+  flake.modules.homeManager.opencode = self.lib.mkHomePersist {
+    directories = [
+      ".local/share/opencode"
+      ".local/state/opencode"
+    ];
   };
 }

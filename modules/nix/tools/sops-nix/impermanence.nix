@@ -1,7 +1,7 @@
+{ self, ... }:
+
 {
-  flake.modules.nixos.sops = { config, ... }: {
-    environment.persistence."/persistent" = {
-      files = [ config.sops.age.keyFile ];
-    };
+  flake.modules.nixos.sops = self.lib.mkPersist {
+    files = [ "/var/lib/sops-nix/key.txt" ];
   };
 }

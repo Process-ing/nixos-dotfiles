@@ -1,9 +1,9 @@
+{ self, ... }:
+
 {
-  flake.modules.homeManager.zygarde = {
-    home.persistence."/persistent" = {
-      directories = [
-        "nixos-dotfiles"
-      ];
-    };
+  flake.modules.homeManager.zygarde = self.lib.mkPersist {
+    directories = [
+      "nixos-dotfiles"
+    ];
   };
 }
