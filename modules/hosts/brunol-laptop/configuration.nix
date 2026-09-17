@@ -25,8 +25,5 @@
 
     # Enable impermanence
     impermanence.enable = true;
-
-    # Make users immutable
-    users.mutableUsers = false;
   };
 }
