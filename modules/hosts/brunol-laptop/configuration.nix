@@ -30,7 +30,7 @@
     sops.secrets."users/root/password_hash" = { };
 
     # Make user immutable and define root password
-    user = {
+    users = {
       mutableUsers = false;
       users.root.hashedPasswordFile = config.sops.secrets."users/root/password_hash".path;
     };
