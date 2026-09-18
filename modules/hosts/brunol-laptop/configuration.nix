@@ -27,7 +27,9 @@
     impermanence.enable = true;
 
     # Declare root password secret
-    sops.secrets."users/root/password_hash" = { };
+    sops.secrets."users/root/password_hash" = {
+      neededForUsers = true;
+    };
 
     # Make user immutable and define root password
     users = {
