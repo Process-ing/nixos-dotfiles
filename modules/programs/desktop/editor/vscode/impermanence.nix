@@ -2,9 +2,12 @@
 
 {
   flake.modules.homeManager.vscode = self.lib.mkHomePersist {
+    files = [
+      ".vscode-shared/sharedStorage/state.vscdb"
+    ];
+
     directories = [
       ".vscode/extensions"
-      ".vscode-shared"
     ];
   };
 }
