@@ -2,14 +2,8 @@
 
 {
   flake.modules.nixos.wifi = lib.mkMerge [
-    {
-      imports = with self.modules.nixos; [
-        eduroam
-      ];
-    }
-
-    (self.lib.mkWifi "Apple Watch do Henrique" false) # Where did the name come from :O
-    (self.lib.mkWifi "NI" true)
-    (self.lib.mkWifi "Studio 26" false)
+    (self.lib.mkWifi "Apple Watch do Henrique") # Where did the name come from :O
+    (self.lib.mkHiddenWifi "NI")
+    (self.lib.mkWifi "Studio 26")
   ];
 }

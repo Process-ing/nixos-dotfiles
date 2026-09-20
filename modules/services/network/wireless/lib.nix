@@ -1,53 +1,63 @@
 { lib, self, ... }:
 
 {
-  config.flake.lib = {
-    # Create a Wi-Fi profile boilerplate
-    mkWifiBase = ssid: isHidden: configSuffix: {
-      # Create the Wi-Fi configuration as a template
-      sops.templates."${ssid}.nmconnection" = {
-        path = "/etc/NetworkManager/system-connections/${ssid}.nmconnection";
+  config.flake.lib = let
+    mkWifiId = ssid: builtins.replaceStrings [ " " ] [ "-" ] (lib.toLower ssid);
+  in {
+    # Create a standard secure Wi-Fi profile
+    # There must be present a secret "wifi/<ssid>" with the Wi-Fi passwor
+    mkWifi = ssid: { config, ... }: let 
+      id = mkWifiId ssid;
+    in {
+      # Declare Wi-Fi password secret
+      sops.secrets."wifi/${id}" = { };
 
-        content = ''
-          [connection]
-          id=${ssid}
-          type=wifi
+      networking.networkmanager.ensureProfiles = {
+        # Specify password in configuration
+        secrets.entries = [
+          {
+            file = config.sops.secrets."wifi/${id}".path;
+            key = "psk";
+            matchId = id;
+            matchType = "wifi";
+            matchSetting = "wifi-security";
+          }
+        ];
 
-          [wifi]${lib.optionalString isHidden "\nhidden=true"}
-          mode=infrastructure
-          ssid=${ssid}
+        # Declare Wi-Fi properties
+        profiles.${id} = {
+          connection = {
+            inherit id;
+            type = "wifi";
+          };
 
-          [ipv4]
-          method=auto
+          wifi = {
+            mode = "infrastructure";
+            inherit ssid;
+          };
 
-          [ipv6]
-          addr-gen-mode=stable-privacy
-          method=auto
+          ipv4.method = "auto";
 
-          [proxy]
-        ''
-        + configSuffix;
+          ipv6 = {
+            addr-gen-mode = "stable-privacy";
+            method = "auto";
+          };
+
+          wifi-security = {
+            auth-alg = "open";
+            key-mgmt = "wpa-psk";
+          };
+        };
       };
     };
 
-    # Create a standard secure Wi-Fi profile
-    # There must be present a secret "wifi/<ssid>" with the Wi-Fi password
-    mkWifi =
-      ssid: isHidden:
-      { config, ... }:
-      lib.mkMerge [
-        {
-          # Declare Wi-Fi password secret
-          sops.secrets."wifi/${ssid}" = { };
-        }
-
-        (self.lib.mkWifiBase ssid isHidden ''
-
-          [wifi-security]
-          auth-alg=open
-          key-mgmt=wpa-psk
-          psk=${config.sops.placeholder."wifi/${ssid}"}
-        '')
-      ];
+    mkHiddenWifi = ssid: let
+      id = mkWifiId ssid;
+    in lib.mkMerge [
+      (self.lib.mkWifi ssid)
+      {
+        networking.networkmanager.ensureProfiles.profiles.${id}.wifi.hidden = "yes";
+      }
+    ];
   };
 }
