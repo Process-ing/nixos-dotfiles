@@ -15,6 +15,7 @@
       catppuccin
       distrobox-path
       i3
+      jetbrains-impermanence
       kitty
       pavucontrol
       vscode
