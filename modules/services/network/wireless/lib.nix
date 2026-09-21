@@ -3,50 +3,37 @@
 {
   config.flake.lib = let
     mkWifiId = ssid: builtins.replaceStrings [ " " ] [ "-" ] (lib.toLower ssid);
+    mkWifiPassVar = ssid: "$" + (builtins.replaceStrings [ " " ] [ "_" ] (lib.toUpper ssid));
   in {
     # Create a standard secure Wi-Fi profile
-    # There must be present a secret "wifi/<ssid>" with the Wi-Fi passwor
+    # There must be present a line "$SSID_IN_UPPERCASE_WITH_UNDERSCORES=..."
+    # with the Wi-Fi password in the Wi-Fi .env secret
     mkWifi = ssid: { config, ... }: let 
       id = mkWifiId ssid;
+      wifiPassVar = mkWifiPassVar ssid;
     in {
-      # Declare Wi-Fi password secret
-      sops.secrets."wifi/${id}" = { };
+      networking.networkmanager.ensureProfiles.profiles.${id} = {
+        connection = {
+          inherit id;
+          type = "wifi";
+        };
 
-      networking.networkmanager.ensureProfiles = {
-        # Specify password in configuration
-        secrets.entries = [
-          {
-            file = config.sops.secrets."wifi/${id}".path;
-            key = "psk";
-            matchId = id;
-            matchType = "wifi";
-            matchSetting = "wifi-security";
-          }
-        ];
+        wifi = {
+          mode = "infrastructure";
+          inherit ssid;
+        };
 
-        # Declare Wi-Fi properties
-        profiles.${id} = {
-          connection = {
-            inherit id;
-            type = "wifi";
-          };
+        ipv4.method = "auto";
 
-          wifi = {
-            mode = "infrastructure";
-            inherit ssid;
-          };
+        ipv6 = {
+          addr-gen-mode = "stable-privacy";
+          method = "auto";
+        };
 
-          ipv4.method = "auto";
-
-          ipv6 = {
-            addr-gen-mode = "stable-privacy";
-            method = "auto";
-          };
-
-          wifi-security = {
-            auth-alg = "open";
-            key-mgmt = "wpa-psk";
-          };
+        wifi-security = {
+          auth-alg = "open";
+          key-mgmt = "wpa-psk";
+          psk = wifiPassVar;
         };
       };
     };
