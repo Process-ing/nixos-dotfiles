@@ -22,6 +22,8 @@
       history.ignorePatterns = [
         "rm *"
         "pkill *"
+        "reboot"
+        "poweroff"
       ];
 
       # Oh My Zsh configuration
