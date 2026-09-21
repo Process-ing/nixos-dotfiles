@@ -14,7 +14,6 @@
       brightnessctl
       catppuccin
       distrobox-path
-      firefox
       i3
       kitty
       pavucontrol
