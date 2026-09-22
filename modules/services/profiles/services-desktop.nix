@@ -11,4 +11,10 @@
       wifi
     ];
   };
+
+  flake.modules.homeManager.services-desktop = {
+    imports = with self.modules.homeManager; [
+      gnome-keyring
+    ];
+  };
 }
