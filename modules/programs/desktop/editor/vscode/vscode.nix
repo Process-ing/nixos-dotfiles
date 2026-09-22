@@ -26,5 +26,16 @@
       accent = "blue";
       settings = { };
     };
+
+    # Modify the VSCode arguments
+    home.file.".vscode/argv.json".text = ''
+      {
+        "enable-crash-reporter": false,
+        "crash-reporter-id": "4e8461dc-be84-421a-9c2d-b58ba032109c",
+
+        // Make VSCode use properly the OS keyring
+        "password-store": "gnome-libsecret"
+      }
+    '';
   };
 }
