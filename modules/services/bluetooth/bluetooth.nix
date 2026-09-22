@@ -1,5 +1,5 @@
 {
-  flake.modules.nixos.bluetooth = {
+  flake.modules.nixos.bluetooth = { pkgs, ... }: {
     # Enable bluetooth
     hardware.bluetooth.enable = true;
 
@@ -8,10 +8,14 @@
       enable = true;
       after = [ "systemd-rfkill.target" ];
       wantedBy = [ "default.target" ];
-      serviceConfig = {
-        Type = "oneshot";
-        ExecStart = "rfkill unblock bluetooth";
-      };
+
+      serviceConfig.Type = "oneshot";
+
+      path = [ pkgs.libuuid ];
+
+      script = ''
+        rfkill unblock bluetooth
+      '';
     };
   };
 }
