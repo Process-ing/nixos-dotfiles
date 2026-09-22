@@ -7,6 +7,7 @@
     ];
 
     directories = [
+      ".config/Code"
       ".vscode/extensions"
     ];
   };
