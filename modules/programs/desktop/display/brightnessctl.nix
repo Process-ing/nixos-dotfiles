@@ -1,6 +1,6 @@
 {
   flake.modules.nixos.brightnessctl = { pkgs, ... }: let
-    lightLevel = "20%";
+    defaultLightLevel = "30%";
   in {
     environment.systemPackages = [ pkgs.brightnessctl ];
 
@@ -13,7 +13,7 @@
       path = [ pkgs.brightnessctl ];
 
       script = ''
-        brightnessctl -d intel_backlight set ${lightLevel}
+        brightnessctl -d intel_backlight set ${defaultLightLevel}
       '';
     };
   };
