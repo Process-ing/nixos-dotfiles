@@ -1,5 +1,7 @@
 {
   flake.modules.nixos.openvpn = { pkgs, ... }: {
-    environment.systemPackages = [ pkgs.networkmanager-openvpn ];
+    networking.networkmanager.plugins = [ pkgs.networkmanager-openvpn ];
+
+    programs.openvpn3.enable = true;
   };
 }
