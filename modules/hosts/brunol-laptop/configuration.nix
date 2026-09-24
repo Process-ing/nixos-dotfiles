@@ -36,5 +36,8 @@
       mutableUsers = false;
       users.root.hashedPasswordFile = config.sops.secrets."users/root/password_hash".path;
     };
+
+    # Define hibernation device
+    boot.resumeDevice = "/dev/disk/by-uuid/a4d58cf7-05f4-43d1-8aa5-30dcebb9b7f2";
   };
 }
