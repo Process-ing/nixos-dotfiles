@@ -7,7 +7,6 @@
       distrobox
       logind
       network-powersaving
-      openvpn
       pipewire
       wifi
     ];
