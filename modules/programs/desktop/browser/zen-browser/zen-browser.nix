@@ -13,7 +13,7 @@
 
       profiles.default = {
         settings = {
-          "zen.view.sidebar-expanded" = false;
+          "zen.tabs.vertical.right-side" = true;
           "zen.view.use-single-toolbar" = false;
           "zen.welcome-screen.seen" = true;
         };
