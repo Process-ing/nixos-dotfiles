@@ -3,10 +3,11 @@
 {
   flake.modules.nixos.services-console = {
     imports = with self.modules.nixos; [
-      ssh
-      podman
+      borg
       network
+      podman
       powersaving
+      ssh
     ];
   };
 
