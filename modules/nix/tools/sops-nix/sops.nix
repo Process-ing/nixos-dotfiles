@@ -2,8 +2,9 @@
 
 {
   flake.modules.nixos.sops =
-    { config, ... }:
-    {
+    { config, ... }: let
+      keyFilePath = "/var/lib/sops-nix/key.txt";
+    in {
       imports = [
         inputs.sops-nix.nixosModules.sops
       ];
@@ -13,12 +14,12 @@
         defaultSopsFile = ../../../../secrets/${config.networking.hostName}.yaml;
 
         # Specify SOPS key path
-        age.keyFile = "/persistent/var/lib/sops-nix/key.txt";
+        age.keyFile = if config.impermanence.enable then "/persistent" + keyFilePath else keyFilePath;
       };
 
       # Add SOPS to environment variables (needed by `sops` command)
       environment.sessionVariables = {
-        SOPS_AGE_KEY_FILE = "/var/lib/sops-nix/key.txt";
+        SOPS_AGE_KEY_FILE = keyFilePath;
       };
     };
 }
