@@ -19,6 +19,7 @@
       kitty
       pavucontrol
       vscode
+      x11
       zen-browser
     ];
   };
