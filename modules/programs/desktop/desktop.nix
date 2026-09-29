@@ -17,6 +17,7 @@
       chromium
       dconf
       distrobox-path
+      gtk
       i3
       jetbrains-impermanence
       kitty
