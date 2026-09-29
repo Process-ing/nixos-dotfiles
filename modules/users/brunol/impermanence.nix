@@ -5,6 +5,7 @@
     directories = [
       "erasmus"
       "nixos-dotfiles"
+      "sapienza"
       "specs"
       "staging"
     ];
