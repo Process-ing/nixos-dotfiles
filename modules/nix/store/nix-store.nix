@@ -21,6 +21,7 @@
       "code"
       "idea"
       "idea-with-plugins"
+      "slack"
       "vscode"
     ];
   };
