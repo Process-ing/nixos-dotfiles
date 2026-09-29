@@ -19,6 +19,7 @@
       jetbrains-impermanence
       kitty
       pavucontrol
+      slack
       vscode
       x11
       zen-browser
