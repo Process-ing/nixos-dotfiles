@@ -5,6 +5,7 @@
     imports = with self.modules.nixos; [
       autorandr
       brightnessctl
+      dconf
       i3
     ];
   };
@@ -14,6 +15,7 @@
       arandr
       catppuccin
       chromium
+      dconf
       distrobox-path
       i3
       jetbrains-impermanence
