@@ -13,6 +13,7 @@
     imports = with self.modules.homeManager; [
       arandr
       catppuccin
+      chromium
       distrobox-path
       i3
       jetbrains-impermanence
