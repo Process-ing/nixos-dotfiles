@@ -4,6 +4,7 @@
   flake.modules.nixos.services-desktop = {
     imports = with self.modules.nixos; [
       bluetooth
+      borg-laptop
       distrobox
       logind
       network-powersaving

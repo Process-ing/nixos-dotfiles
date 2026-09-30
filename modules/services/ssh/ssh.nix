@@ -34,8 +34,6 @@
       enableDefaultConfig = false;
 
       settings = {
-
-        # Default settings
         "*" = {
           ForwardAgent = false;
           AddKeysToAgent = "yes";
