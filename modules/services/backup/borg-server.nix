@@ -3,7 +3,7 @@
     users = {
       # Create borg user
       users.borg = {
-        isSystemUser = true;
+        isNormalUser = true;
         group = "borg";
 
         home = "/mnt/raid1/borg";
