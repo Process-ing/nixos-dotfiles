@@ -3,7 +3,7 @@
     services.borgbackup.jobs.persistent = {
       paths = "/home/brunol";
       encryption.mode = "none";
-      environment.BORG_RSH = "ssh -p ${config.constants.sshPort} -i /home/brunol/.secrets/id_ed25519_inputless";
+      environment.BORG_RSH = "ssh -i /home/brunol/.secrets/id_ed25519_inputless";
       repo = "ssh://borg@brunol-server:~/laptop";
       compression = "auto,zstd";
       startAt = "daily";
