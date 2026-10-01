@@ -6,6 +6,7 @@
       bluetooth
       borg-laptop
       distrobox
+      l2tp
       logind
       network-powersaving
       pipewire
