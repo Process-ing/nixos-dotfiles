@@ -49,6 +49,20 @@
             position = 2000;
             icon = "☦️";
             container = 2; # University
+
+            pins = {
+              "Flang AST" = {
+                id = "46376477-bd34-457a-91f3-db32e4126064";
+                url = "https://github.com/llvm/llvm-project/blob/release/22.x/flang/include/flang/Parser/parse-tree.h";
+                position = 2001;
+              };
+
+              "Fortran Grammar" = {
+                id = "07af4260-1f9a-4a4e-b26a-45c1df70ab7e";
+                url = "https://flang.llvm.org/docs/f2018-grammar.html";
+                position = 2002;
+              };
+            };
           };
           "University" = {
             id = "f943dec4-f1e4-41aa-8095-d1d937e21297";
