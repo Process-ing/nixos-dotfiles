@@ -1,5 +1,5 @@
 {
-  flake.modules.homeManager.chromium = {
-    programs.chromium.enable = true;
+  flake.modules.homeManager.chromium = { pkgs, ... }: {
+    home.packages = [ pkgs.chromium ];
   };
 }
