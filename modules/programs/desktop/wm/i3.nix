@@ -27,6 +27,12 @@
 
         keybindings = lib.mkOptionDefault {
           "${mod}+Return" = "exec kitty";
+
+          # Brightness buttons
+          "XF86MonBrightnessUp" = "exec brightnessctl -d=intel_backlight set +5%";
+          "XF86MonBrightnessDown" = "exec brightnessctl -d=intel_backlight set -5%";
+
+          # Power button
           "XF86PowerOff" = "exec i3lock && systemctl suspend";
         };
 
@@ -41,7 +47,16 @@
           }
         ];
 
+        # Window style
+        window.border = 0;
+        floating.border = 0;
         gaps.inner = 15;
+
+        # Floating windows
+        window.commands = [
+          { command = "floating enable"; criteria.title = "^Volume Control$"; } # pavucontrol
+          { command = "floating enable"; criteria.title = "^Network Connections$"; } # nm-connection-editor
+        ];
       };
     };
   };
