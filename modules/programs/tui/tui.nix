@@ -9,6 +9,7 @@
 
   flake.modules.homeManager.tui = {
     imports = with self.modules.homeManager; [
+      btop
       opencode
     ];
   };
