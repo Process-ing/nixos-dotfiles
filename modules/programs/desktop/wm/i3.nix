@@ -48,6 +48,7 @@
         ];
 
         # Window style
+        window.titlebar = false;
         window.border = 0;
         floating.border = 0;
         gaps.inner = 15;
