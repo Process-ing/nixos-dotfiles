@@ -6,4 +6,10 @@
       ".zsh_history"
     ];
   };
+
+  flake.modules.homeManager.powerlevel10k = self.lib.mkHomePersist {
+    directories = [
+      ".cache/gitstatus"
+    ];
+  };
 }
