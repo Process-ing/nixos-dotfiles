@@ -43,6 +43,14 @@
             position = 1000;
             icon = "👤";
             container = 1; # Personal
+
+            pins = {
+              "NixOS Search" = {
+                id = "e8736f60-8ed7-4d3d-88ea-86eec5e44d13";
+                url = "https://search.nixos.org/options?channel=unstable";
+                position = 1001;
+              };
+            };
           };
           "Metafor" = {
             id = "e8332184-35bf-4f71-a2b2-ce4cdcdecd1d";
