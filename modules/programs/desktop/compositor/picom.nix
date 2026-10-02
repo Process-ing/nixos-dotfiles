@@ -9,6 +9,7 @@
 
       # Fading
       fade = true;
+      fadeDelta = 3;
 
       # Opacity
       inactiveOpacity = 0.7;         # Opacity of inactive windows
