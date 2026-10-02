@@ -7,6 +7,9 @@
       backend = "glx";
       vSync = true;
 
+      # Fading
+      fade = true;
+
       # Opacity
       inactiveOpacity = 0.7;         # Opacity of inactive windows
       
