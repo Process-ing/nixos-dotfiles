@@ -22,6 +22,7 @@
       jetbrains-impermanence
       kitty
       pavucontrol
+      picom
       slack
       vscode
       x11
