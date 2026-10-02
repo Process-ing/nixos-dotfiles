@@ -9,7 +9,9 @@
     services.displayManager.defaultSession = "none+i3";
   };
 
-  flake.modules.homeManager.i3 = { config, lib, ... }: {
+  flake.modules.homeManager.i3 = { lib, ... }: let
+    mod = "Mod4";
+  in {
     xsession.windowManager.i3 = {
       enable = true;
 
@@ -21,15 +23,12 @@
           }
         ];
 
-        modifier = "Mod4";
+        modifier = mod;
 
-        keybindings =
-          let
-            mod = config.xsession.windowManager.i3.config.modifier;
-          in
-          lib.mkOptionDefault {
-            "${mod}+Return" = "exec kitty";
-          };
+        keybindings = lib.mkOptionDefault {
+          "${mod}+Return" = "exec kitty";
+          "XF86PowerOff" = "exec i3lock && systemctl suspend";
+        };
 
         workspaceOutputAssign = [
           {
