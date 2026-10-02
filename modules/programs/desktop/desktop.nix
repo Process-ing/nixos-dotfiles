@@ -25,6 +25,7 @@
       picom
       slack
       vscode
+      wallpaper
       x11
       zen-browser
     ];
