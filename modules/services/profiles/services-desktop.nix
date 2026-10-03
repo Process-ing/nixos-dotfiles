@@ -9,6 +9,7 @@
       logind
       network-powersaving
       pipewire
+      udisks
       wifi
     ];
   };
@@ -17,6 +18,7 @@
     imports = with self.modules.homeManager; [
       gnome-keyring
       pipewire
+      udisks
     ];
   };
 }
