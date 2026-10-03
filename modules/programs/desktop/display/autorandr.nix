@@ -1,10 +1,12 @@
 {
+  flake.modules.nixos.autorandr = {
+    # Enable autorandr systemd service
+    services.autorandr.enable = true;
+  };
+
   flake.modules.homeManager.autorandr =
     { pkgs, ... }:
     {
-      # Enable autorandr systemd service
-      services.autorandr.enable = true;
-
       programs.autorandr = {
         enable = true;
 

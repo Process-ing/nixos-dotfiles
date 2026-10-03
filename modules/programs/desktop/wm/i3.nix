@@ -7,6 +7,9 @@
     
     # Enable i3lock
     programs.i3lock.enable = true;
+
+    # Set i3 as the default window manager
+    services.displayManager.defaultSession = "none+i3";
   };
 
   flake.modules.homeManager.i3 = { lib, pkgs, ... }: let
