@@ -20,7 +20,7 @@
     };
 
     # Define repos
-    services.borgbackups.repos = {
+    services.borgbackup.repos = {
       "brunol-laptop-persistent" = {
         user = "borg";
         group = "borg";
