@@ -22,6 +22,7 @@
       i3
       jetbrains-impermanence
       kitty
+      nemo
       pavucontrol
       picom
       slack
