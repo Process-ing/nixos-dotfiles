@@ -1,8 +1,11 @@
 {
-  flake.modules.nixos.autorandr =
+  flake.modules.homeManager.autorandr =
     { pkgs, ... }:
-    {      
-      services.autorandr = {
+    {
+      # Enable autorandr systemd service
+      services.autorandr.enable = true;
+
+      programs.autorandr = {
         enable = true;
 
         # Configure profiles
@@ -132,6 +135,11 @@
               };
             };
           };
+        };
+
+        # Configure post-switch hooks
+        hooks.postswitch = {
+          "set-wallpaper" = "${pkgs.feh}/bin/feh --bg-fill ${../wallpaper/main.jpg}";
         };
       };
     };
