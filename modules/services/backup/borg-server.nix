@@ -8,7 +8,7 @@
 
       # Create borg user
       users.borg = {
-        isNormalUser = true;
+        isSystemUser = true;
         passwordHashFile = config.sops.secrets."users/borg/password_hash".path;
         group = "borg";
 
@@ -23,6 +23,18 @@
 
       # Create borg group
       groups.borg = { };
+    };
+
+    # Define repos
+    services.borgbackups.repos = {
+      "brunol-laptop-persistent" = {
+        user = "borg";
+        group = "borg";
+        path = "${config.users.users.borg.home}/brunol-laptop/persistent";
+        authorizedKeys = [
+          config.constants.publicKey.brunol-inputless
+        ];
+      };
     };
   };
 }
