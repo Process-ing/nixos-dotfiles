@@ -9,7 +9,7 @@
     services.displayManager.defaultSession = "none+i3";
   };
 
-  flake.modules.homeManager.i3 = { lib, ... }: let
+  flake.modules.homeManager.i3 = { lib, pkgs, ... }: let
     mod = "Mod4";
   in {
     xsession.windowManager.i3 = {
@@ -19,6 +19,10 @@
         startup = [
           {
             command = "autorandr -c";
+            always = true;
+          }
+          {
+            command = "${pkgs.feh}/bin/feh --bg-fill ${../wallpaper/main.jpg}";
             always = true;
           }
         ];
