@@ -16,6 +16,9 @@
       
       # Corners
       settings.corner-radius = 15;
+      settings.rounded-corners-exclude = [
+        "window_type = 'dock'" # Avoid on system bars (like i3bar)
+      ];
     };
   };
 }
