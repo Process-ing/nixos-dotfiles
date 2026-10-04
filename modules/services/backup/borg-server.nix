@@ -21,10 +21,10 @@
 
     # Define repos
     services.borgbackup.repos = {
-      "brunol-laptop-persistent" = {
+      "brunol-laptop" = {
         user = "borg";
         group = "borg";
-        path = "${config.users.users.borg.home}/brunol-laptop/persistent";
+        path = "${config.users.users.borg.home}/brunol-laptop";
         authorizedKeys = [
           config.constants.publicKey.brunol-inputless
         ];
