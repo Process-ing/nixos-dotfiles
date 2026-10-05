@@ -15,7 +15,6 @@
       autorandr
       arandr
       catppuccin
-      chromium
       dconf
       distrobox-path
       gtk
