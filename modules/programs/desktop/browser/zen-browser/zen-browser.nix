@@ -1,7 +1,7 @@
 { inputs, self, ... }:
 
 {
-  flake.modules.homeManager.zen-browser = { pkgs, ... }: {
+  flake.modules.homeManager.zen-browser = { lib, pkgs, ... }: {
     imports = [ inputs.zen-browser.homeModules.beta ];
 
     programs.zen-browser = {
@@ -64,7 +64,6 @@
                 url = "https://github.com/llvm/llvm-project/blob/release/22.x/flang/include/flang/Parser/parse-tree.h";
                 position = 2001;
               };
-
               "Fortran Grammar" = {
                 id = "07af4260-1f9a-4a4e-b26a-45c1df70ab7e";
                 url = "https://flang.llvm.org/docs/f2018-grammar.html";
@@ -117,6 +116,13 @@
             isEssential = true;
             container = 2; # University
           };
+          "Uni.Moodle" = {
+            id = "89dbef7c-99cd-431e-aeb9-a812abc90cd1";
+            url = "https://moodle2627.up.pt";
+            position = 204;
+            isEssential = true;
+            container = 2; # University
+          };
         };  
 
         # Set theme (Catppuccin)
@@ -134,12 +140,19 @@
         };
       };
 
-      # Add extensions
-      policies.ExtensionSettings = self.lib.mkExtensionSettings {
-        "uBlock0@raymondhill.net" = "ublock-origin";
-        "{446900e4-71c2-419f-a6a7-df9c091e268b}" = "bitwarden-password-manager";
-        "87677a2c52b84ad3a151a4a72f5bd3c4@jetpack" = "grammarly-1";
-      };
+      policies.ExtensionSettings = lib.mkMerge [
+        # Install extensions
+        (self.lib.mkExtensionSettings {
+          "uBlock0@raymondhill.net" = "ublock-origin";
+          "{446900e4-71c2-419f-a6a7-df9c091e268b}" = "bitwarden-password-manager";
+          "87677a2c52b84ad3a151a4a72f5bd3c4@jetpack" = "grammarly-1";
+        })
+
+        # Additional settings
+        {
+          "{446900e4-71c2-419f-a6a7-df9c091e268b}".private_browsing = true; # Allow Bitwarden to run in private windows
+        }
+      ];
     };
   };
 }
