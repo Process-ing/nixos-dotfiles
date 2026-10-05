@@ -69,6 +69,11 @@
                 url = "https://flang.llvm.org/docs/f2018-grammar.html";
                 position = 2002;
               };
+              "Notion" = {
+                id = "a9bd5b5e-fec6-4be6-9cba-5da623feb861";
+                url = "https://app.notion.com";
+                position = 2003;
+              };
             };
           };
           "University" = {
@@ -93,6 +98,8 @@
         };
 
         pinsForce = true;
+
+        # Essentials
         pins = {
           "Personal.Gemini" = {
             id = "92b3aba8-c529-4d17-8f2a-8365131f0ad1";
@@ -125,6 +132,13 @@
           "Uni.Moodle" = {
             id = "89dbef7c-99cd-431e-aeb9-a812abc90cd1";
             url = "https://moodle2627.up.pt";
+            position = 203;
+            isEssential = true;
+            container = 2; # University
+          };
+          "Uni.Sigarra" = {
+            id = "14e559af-dcce-4357-8b52-a52e4d6d94c8";
+            url = "https://sigarra.up.pt/feup";
             position = 204;
             isEssential = true;
             container = 2; # University
