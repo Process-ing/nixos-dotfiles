@@ -76,6 +76,19 @@
             position = 3000;
             icon = "🏛️";
             container = 2; # University
+
+            pins = {
+              "Google Classroom" = {
+                id = "e7b90776-33c4-4583-a17e-d780761a03f9";
+                url = "https://classroom.google.com";
+                position = 3001;
+              };
+              "Google Drive" = {
+                id = "f4a49599-aa7c-4f8e-83a1-ce28523eff6e";
+                url = "https://drive.google.com";
+                position = 3002;
+              };
+            };
           };
         };
 
@@ -106,13 +119,6 @@
             id = "be638cf5-29f0-4aa0-816c-4d721f628a9a";
             url = "https://github.com";
             position = 202;
-            isEssential = true;
-            container = 2; # University
-          };
-          "Uni.GoogleDrive" = {
-            id = "eb94b073-003f-4a5d-ba77-e1c964574df1";
-            url = "https://drive.google.com";
-            position = 203;
             isEssential = true;
             container = 2; # University
           };
