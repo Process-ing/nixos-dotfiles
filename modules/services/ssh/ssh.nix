@@ -16,6 +16,8 @@
       knownHosts = {
         "github.com".publicKey =
           "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIOMqqnkVzrm0SdG6UOoqKLsabgH5C9okWi0dh2l9GKJl";
+        "brunol-server".publicKey =
+          "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIOOhAIPkTfS/ph8Dznhqwy3Bx7BHp9xSJGsxNS/io/I5";
       };
     };
 
