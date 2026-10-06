@@ -1,5 +1,9 @@
+{ self, ... }:
+
 {
-  flake.modules.homeManager.direnv = {
-    
+  flake.modules.homeManager.direnv = self.lib.mkHomePersist {
+    directories = [
+      ".config/direnv"
+    ];
   };
 }
