@@ -6,6 +6,7 @@
       system-console
       services-desktop
       desktop
+      nix-auto-upgrade
     ];
   };
 
