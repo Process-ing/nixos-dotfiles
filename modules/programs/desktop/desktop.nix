@@ -7,6 +7,7 @@
       brightnessctl
       dconf
       i3
+      lightdm
     ];
   };
 
