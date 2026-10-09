@@ -1,15 +1,18 @@
 {
-  flake.modules.nixos.i3 = {
+  flake.modules.nixos.i3 = { pkgs, ... }: {
     services.xserver = {
       enable = true;
       windowManager.i3.enable = true;
     };
 
-    # Enable i3lock
-    programs.i3lock.enable = true;
-
     # Set i3 as the default window manager
     services.displayManager.defaultSession = "none+i3";
+
+    # Set i3lock as the default screen locker with xss-lock
+    programs.xss-lock = {
+      enable = true;
+      lockerCommand = "${pkgs.i3lock-fancy}/bin/i3lock-fancy";
+    };
   };
 
   flake.modules.homeManager.i3 =
