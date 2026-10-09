@@ -2,9 +2,11 @@
 
 {
   flake.modules.nixos.sops =
-    { config, ... }: let
+    { config, ... }:
+    let
       keyFilePath = "/var/lib/sops-nix/key.txt";
-    in {
+    in
+    {
       imports = [
         inputs.sops-nix.nixosModules.sops
       ];

@@ -28,7 +28,7 @@
           "Personal" = {
             color = "blue";
             icon = "fingerprint";
-            id = 1;            
+            id = 1;
           };
           "University" = {
             icon = "briefcase";
@@ -143,7 +143,7 @@
             isEssential = true;
             container = 2; # University
           };
-        };  
+        };
 
         # Set theme (Catppuccin)
         presets.catppuccin = {

@@ -17,12 +17,14 @@
     };
 
     # Whitelist unfree packages
-    nixpkgs.config.allowUnfreePredicate = pkg: builtins.elem (lib.getName pkg) [
-      "code"
-      "idea"
-      "idea-with-plugins"
-      "slack"
-      "vscode"
-    ];
+    nixpkgs.config.allowUnfreePredicate =
+      pkg:
+      builtins.elem (lib.getName pkg) [
+        "code"
+        "idea"
+        "idea-with-plugins"
+        "slack"
+        "vscode"
+      ];
   };
 }

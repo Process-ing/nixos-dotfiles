@@ -12,8 +12,8 @@
       fadeDelta = 3;
 
       # Opacity
-      inactiveOpacity = 0.7;         # Opacity of inactive windows
-      
+      inactiveOpacity = 0.7; # Opacity of inactive windows
+
       # Corners
       settings.corner-radius = 15;
       settings.rounded-corners-exclude = [
