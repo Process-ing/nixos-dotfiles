@@ -42,7 +42,7 @@
             "XF86MonBrightnessDown" = "exec ${pkgs.brightnessctl}/bin/brightnessctl -d=intel_backlight set -5%";
 
             # Power button
-            "XF86PowerOff" = "exec i3lock && systemctl suspend";
+            "XF86PowerOff" = "exec systemctl suspend";
           };
 
           workspaceOutputAssign = [
