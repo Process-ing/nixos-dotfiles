@@ -11,7 +11,7 @@
     # Set i3lock as the default screen locker with xss-lock
     programs.xss-lock = {
       enable = true;
-      lockerCommand = "${pkgs.i3lock-fancy}/bin/i3lock-fancy";
+      lockerCommand = "${pkgs.i3lock}/bin/i3lock";
     };
   };
 
