@@ -1,10 +1,8 @@
 {
   flake.modules.nixos.feup-vpn = { config, pkgs, ... }: {
     # Declare needed secrets
-    sops.secrets = {
-      "vpn/feup-vpn/username" = { };
-      "vpn/feup-vpn/password" = { };      
-    };
+    sops.secrets."vpn/feup-vpn/username" = { };
+    sops.secrets."vpn/feup-vpn/password" = { };
 
     # Install necessary packages for PPTP network
     environment.systemPackages = [ pkgs.pptp pkgs.ppp ];
@@ -13,10 +11,10 @@
     boot.kernelModules = [ "ppp_mppe" ];
 
     # Create VPN peer file
-    sops.template."feup-vpn-peer" = {
+    sops.templates."feup-vpn-peer" = {
       path = "/etc/ppp/peers/feup";
       content = ''
-        pty "${pkgs}/bin/pptp feup-vpn.up.pt --nolaunchpppd"
+        pty "${pkgs.pptp}/bin/pptp feup-vpn.up.pt --nolaunchpppd"
         name ${config.sops.placeholder."vpn/feup-vpn/username"}
         remotename PPTP
         require-mppe-128
@@ -33,7 +31,7 @@
     };
 
     # Declare VPN password
-    sops.template."chap-secrets" = {
+    sops.templates."chap-secrets" = {
       path = "/etc/ppp/chap-secrets";
       content = ''
         "${config.sops.placeholder."vpn/feup-vpn/username"}" PPTP "${config.sops.placeholder."vpn/feup-vpn/password"}" *
