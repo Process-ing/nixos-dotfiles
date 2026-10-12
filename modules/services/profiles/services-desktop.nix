@@ -6,6 +6,7 @@
       bluetooth
       borg-laptop
       distrobox
+      feup-vpn
       logind
       network-powersaving
       pipewire
