@@ -1,9 +1,11 @@
+{ self, ... }:
+
 {
   flake.modules.nixos.nix-auto-upgrade = { config, ... }: {
     # Declare automatic system upgrades
     system.autoUpgrade = {
       enable = true;
-      flake = "/home/brunol/nixos-dotfiles";
+      flake = self.outPath;
       flags = [
         "--print-build-logs"
         "--commit-lock-file"
@@ -24,5 +26,15 @@
         GIT_COMMITTER_NAME = brunolGitConfig.name;
         GIT_COMMITTER_EMAIL = brunolGitConfig.email;
       };
+
+    # Fix "repository is not owned by current user" error
+    home-manager.users.root = {
+      imports = [ self.modules.homeManager.home-manager ];
+
+      home.file.".gitconfig".text = ''
+        [safe]
+          directory = ${self.outPath}
+      '';
+    };
   };
 }
