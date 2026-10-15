@@ -9,6 +9,7 @@
       overleaf-worker
       vaultwarden-worker
       jmm-worker
+      immich-worker
       cloudflare-ddns-worker
 
       system-user-registry # Dependency
@@ -60,6 +61,12 @@
         enable = true;
         port = 5003;
         domain = "jmm.processing.pt";
+      };
+
+      immich = {
+        enable = true;
+        port = 5004;
+        domain = "immich.processing.pt";
       };
 
       cloudflare-ddns.enable = true;
