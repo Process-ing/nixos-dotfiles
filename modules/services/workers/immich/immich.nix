@@ -153,6 +153,10 @@
 
       # Configure Nginx host
       services.nginx.virtualHosts.${cfg.domain} = self.lib.mkNginxHost config {
+        extraConfig = ''
+          client_max_body_size 100M;
+        '';
+
         locations."/" = {
           proxyPass = "http://localhost:${toString cfg.port}";
         };
