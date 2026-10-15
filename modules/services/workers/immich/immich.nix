@@ -74,16 +74,22 @@
             "immich_redis"
             "immich_postgres"
           ];
+          extraOptions = [
+            "--network-alias=immich-server"
+          ];
 
           podman.user = "immich";
         };
 
         immich_machine_learning = {
-          image = "ghrc.io/immich-app/immich-machine-learning:${immichVersion}";
+          image = "ghcr.io/immich-app/immich-machine-learning:${immichVersion}";
           volumes = [
             "${modelCacheFolder}:/cache"
           ];
           environmentFiles = [ config.sops.templates."workers/immich/.env".path ];
+          extraOptions = [
+            "--network-alias=immich-machine-learning"
+          ];
 
           podman.user = "immich";
         };
@@ -92,6 +98,7 @@
           image = "docker.io/valkey/valkey:9@sha256:c123e3715db63d06d4ad6964884037aa0d5d4d703939b9929954112889708e1d";
           extraOptions = [
             "--health-cmd=redis-cli ping | grep -q PONG || exit 1"
+            "--network-alias=redis"
           ];
 
           podman.user = "immich";
@@ -105,6 +112,7 @@
           ];
           extraOptions = [
             "--shm-size=134217728"
+            "--network-alias=database"
           ];
 
           podman.user = "immich";
