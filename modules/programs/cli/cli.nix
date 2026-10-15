@@ -9,6 +9,7 @@
 
   flake.modules.homeManager.cli = {
     imports = with self.modules.homeManager; [
+      busybox
       direnv
       fastfetch
       git
