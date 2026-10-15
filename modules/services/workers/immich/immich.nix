@@ -1,7 +1,7 @@
 { self, ... }:
 
 {
-  flake.modules.nixos.immich-worker = { config, lib, ... }: let
+  flake.modules.nixos.immich-worker = { config, lib, pkgs, ... }: let
     cfg = config.workers.immich;
 
     immichVersion = "v3";
@@ -76,6 +76,7 @@
           ];
           extraOptions = [
             "--network-alias=immich-server"
+            "--network=immich_network"
           ];
 
           podman.user = "immich";
@@ -89,6 +90,7 @@
           environmentFiles = [ config.sops.templates."workers/immich/.env".path ];
           extraOptions = [
             "--network-alias=immich-machine-learning"
+            "--network=immich_network"
           ];
 
           podman.user = "immich";
@@ -99,6 +101,7 @@
           extraOptions = [
             "--health-cmd=redis-cli ping | grep -q PONG || exit 1"
             "--network-alias=redis"
+            "--network=immich_network"
           ];
 
           podman.user = "immich";
@@ -113,10 +116,38 @@
           extraOptions = [
             "--shm-size=134217728"
             "--network-alias=database"
+            "--network=immich_network"
           ];
 
           podman.user = "immich";
         };
+      };
+
+      # Declare network creation service
+      systemd.services."podman-immich_network" = {
+        description = "Creates a network for immich";
+        wantedBy = [ "multi-user.target" ];
+        before = [
+          "podman-immich_server.service"
+          "podman-immich_machine_learning.service"
+          "podman-immich_redis.service"
+          "podman-immich_postgres.service"
+        ];
+        requiredBy = [
+          "podman-immich_server.service"
+          "podman-immich_machine_learning.service"
+          "podman-immich_redis.service"
+          "podman-immich_postgres.service"
+        ];
+        serviceConfig = {
+          Type = "oneshot";
+          RemainAfterExit = true;
+        };
+
+        path = [ pkgs.podman ];
+        script = ''
+          podman network inspect immich_network || podman network create immich_network
+        '';
       };
 
       # Configure Nginx host
