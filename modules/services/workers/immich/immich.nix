@@ -142,6 +142,7 @@
         serviceConfig = {
           Type = "oneshot";
           RemainAfterExit = true;
+          User = "immich";
         };
 
         path = [ pkgs.podman ];
