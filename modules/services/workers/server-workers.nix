@@ -46,7 +46,7 @@
       };
 
       overleaf = {
-        enable = true;
+        enable = false;
         port = 5001;
         domain = "overleaf.processing.pt";
       };
