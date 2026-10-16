@@ -65,7 +65,7 @@
         # Setup Nginx host
         services.nginx.virtualHosts.${cfg.domain} = self.lib.mkNginxHost config {
           extraConfig = ''
-            client_max_body_size 100M;
+            client_max_body_size 0;
           '';
 
           locations."/" = {
