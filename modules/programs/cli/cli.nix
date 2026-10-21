@@ -12,6 +12,7 @@
       direnv
       fastfetch
       git
+      trash-cli
       zsh
     ];
   };
