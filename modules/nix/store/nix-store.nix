@@ -21,8 +21,8 @@
       pkg:
       builtins.elem (lib.getName pkg) [
         "code"
-        "idea"
-        "idea-with-plugins"
+        "intellij-idea"
+        "intellij-idea-with-plugins"
         "slack"
         "vscode"
       ];
