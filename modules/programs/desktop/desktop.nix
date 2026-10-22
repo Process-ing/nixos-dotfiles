@@ -20,6 +20,7 @@
       distrobox-path
       gtk
       i3
+      intellij
       jetbrains-impermanence
       kitty
       nemo
