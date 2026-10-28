@@ -1,7 +1,8 @@
 {
-  flake.modules.homeManager.gnome-keyring = { pkgs, ... }: {
-    services.gnome-keyring.enable = true;
-
-    home.packages = [ pkgs.gcr_4 ]; # Provides org.gnome.keyring.SystemPrompter
+  flake.modules.nixos.gnome-keyring = {
+    services.gnome = {
+      gnome-keyring.enable = true;
+      gcr-ssh-agent.enable = false;  # Conflicts with SSH agent
+    };
   };
 }
