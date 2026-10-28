@@ -10,7 +10,7 @@
         "--print-build-logs"
         "--commit-lock-file"
       ];
-      dates = "daily";
+      dates = "20:00";
       randomizedDelaySec = "45min";
     };
 
