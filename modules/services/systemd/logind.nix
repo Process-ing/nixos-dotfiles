@@ -1,7 +1,7 @@
 {
   flake.modules.nixos.logind = {
     services.logind.settings.Login = {
-      HandlePowerKey = "suspend";
+      HandlePowerKey = "ignore";
       HandleLidSwitch = "ignore";
     };
   };
