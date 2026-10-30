@@ -1,5 +1,5 @@
 {
-  flake.modules.nixos.feup-vpn = { pkgs, ... }: let
+  flake.modules.homeManager.feup-vpn = { pkgs, ... }: let
     feupVpnCmd = pkgs.writeShellApplication {
       name = "feup-vpn";
       runtimeInputs = [ pkgs.gp-saml-gui ];
@@ -9,6 +9,6 @@
       '';
     };
   in {
-    environment.systemPackages = [ feupVpnCmd ];
+    home.packages = [ feupVpnCmd ];
   };
 }

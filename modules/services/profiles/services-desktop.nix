@@ -6,7 +6,6 @@
       bluetooth
       borg-laptop
       distrobox
-      feup-vpn
       gnome-keyring
       logind
       network-powersaving
@@ -19,6 +18,7 @@
   flake.modules.homeManager.services-desktop = {
     imports = with self.modules.homeManager; [
       dunst
+      feup-vpn
       pipewire
       udisks
     ];
