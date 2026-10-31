@@ -19,6 +19,7 @@
     imports = with self.modules.homeManager; [
       dunst
       feup-vpn
+      gnome-keyring
       pipewire
       udisks
     ];
