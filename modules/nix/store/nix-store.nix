@@ -12,8 +12,7 @@
     # Allow automatic Nix garbage collection
     nix.gc = {
       automatic = true;
-      dates = "10:00";
-      persistent = true;
+      dates = "08:00";
       options = "--delete-older-than 14d";
     };
 

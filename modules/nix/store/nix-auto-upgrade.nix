@@ -10,9 +10,8 @@
         "--print-build-logs"
         "--commit-lock-file"
       ];
-      dates = "10:00";
+      dates = "08:00";
       randomizedDelaySec = "45min";
-      persistent = true;
     };
 
     # Set git credentials
