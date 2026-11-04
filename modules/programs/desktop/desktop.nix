@@ -27,6 +27,7 @@
       pavucontrol
       picom
       slack
+      specs
       vscode
       x11
       zen-browser
