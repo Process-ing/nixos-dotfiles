@@ -133,6 +133,7 @@
                 enable = true;
                 position = "0x520";
                 mode = "1920x1080";
+                rotate = "normal";
                 rate = "60.00";
               };
             };
