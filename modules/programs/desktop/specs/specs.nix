@@ -1,6 +1,14 @@
+{ self, ... }:
+
 {
   flake.modules.homeManager.specs = { pkgs, ... }: {
     # Contains packages needed for my work
-    home.packages = [ pkgs.nodejs_22 ];
+
+    imports = with self.modules.homeManager; [
+      intellij
+      jetbrains-impermanence
+    ];
+
+    home.packages = with pkgs; [ nodejs_22 zotero ];
   };
 }

@@ -21,10 +21,16 @@
       pkg:
       builtins.elem (lib.getName pkg) [
         "code"
+        "firefox-esr-140-bin-unwrapped" # Needed for Zotero
         "intellij-idea"
         "intellij-idea-with-plugins"
         "slack"
         "vscode"
       ];
+
+    # Whitelist insecure packages
+    nixpkgs.config.permittedInsecurePackages = [
+      "firefox-esr-140-bin-unwrapped-140.17.0esr" # Needed for Zotero
+    ];
   };
 }
