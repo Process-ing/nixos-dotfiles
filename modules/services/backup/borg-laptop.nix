@@ -15,6 +15,7 @@
       environment.BORG_UNKNOWN_UNENCRYPTED_REPO_ACCESS_IS_OK = "yes";
       compression = "auto,zstd";
       startAt = "daily";
+      persistentTimer = true;
     };
   };
 }
