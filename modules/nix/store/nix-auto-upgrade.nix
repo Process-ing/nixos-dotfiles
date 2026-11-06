@@ -1,11 +1,13 @@
 { self, ... }:
 
 {
-  flake.modules.nixos.nix-auto-upgrade = { config, ... }: {
+  flake.modules.nixos.nix-auto-upgrade = { config, ... }: let
+    dotfilesPath = "/home/brunol/nixos-dotfiles";
+  in {
     # Declare automatic system upgrades
     system.autoUpgrade = {
       enable = true;
-      flake = self.outPath;
+      flake = dotfilesPath;
       flags = [
         "--print-build-logs"
         "--commit-lock-file"
@@ -33,7 +35,7 @@
 
       home.file.".gitconfig".text = ''
         [safe]
-          directory = ${self.outPath}
+          directory = ${dotfilesPath}
       '';
     };
   };
