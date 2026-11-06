@@ -8,6 +8,7 @@
       dconf
       i3
       lightdm
+      xdg
     ];
   };
 
@@ -28,6 +29,7 @@
       specs
       vscode
       x11
+      xdg
       zen-browser
     ];
   };
