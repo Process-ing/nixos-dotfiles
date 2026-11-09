@@ -9,6 +9,6 @@
       jetbrains-impermanence
     ];
 
-    home.packages = with pkgs; [ nodejs_22 zotero ];
+    home.packages = with pkgs; [ nodejs_22 python3 zotero ];
   };
 }
