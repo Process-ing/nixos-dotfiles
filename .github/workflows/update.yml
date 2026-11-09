@@ -1,0 +1,21 @@
+name: Update Dependencies
+on:
+  workflow_dispatch:  # For manual triggering
+  schedule:
+    - cron: '0 0 * * *'  # Run every day at midnight UTC
+
+jobs:
+  update:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: DeterminateSystems/nix-installer-action@v23
+      - id: lockfile-update
+        uses: DeterminateSystems/update-flake-lock@v29
+
+      - name: Merge
+        run:
+          gh pr merge --auto "${{ steps.update.outputs.pull-request-number }}" --rebase
+        if: ${{ steps.update.outputs.pull-request-number != '' }}
+        env:
+          GH_TOKEN: ${{ secrets.GH_TOKEN }}
