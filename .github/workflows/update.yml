@@ -9,13 +9,13 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4
-      - uses: DeterminateSystems/nix-installer-action@v23
-      - id: lockfile-update
-        uses: DeterminateSystems/update-flake-lock@v29
+      - uses: DeterminateSystems/nix-installer-action@main
+      - id: update
+        uses: DeterminateSystems/update-flake-lock@main
 
       - name: Merge
-        run:
-          gh pr merge --auto "${{ steps.update.outputs.pull-request-number }}" --rebase
-        if: ${{ steps.update.outputs.pull-request-number != '' }}
+        if: steps.update.outputs.pull-request-number != ''
         env:
           GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        run:
+          gh pr merge --auto "${{ steps.update.outputs.pull-request-number }}" --rebase
