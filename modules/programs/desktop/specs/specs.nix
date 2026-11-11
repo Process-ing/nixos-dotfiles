@@ -6,6 +6,9 @@
     imports = with self.modules.homeManager; [
       intellij
       jetbrains-impermanence
+    ];
+
+    home.packages = with pkgs; [
       zotero
     ];
 
