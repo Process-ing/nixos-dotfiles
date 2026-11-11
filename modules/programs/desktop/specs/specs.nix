@@ -6,6 +6,7 @@
     imports = with self.modules.homeManager; [
       intellij
       jetbrains-impermanence
+      zotero
     ];
 
     home.file.".npmrc".text = ''
