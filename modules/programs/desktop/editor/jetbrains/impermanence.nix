@@ -5,6 +5,7 @@
     directories = [
       ".cache/JetBrains"
       ".config/JetBrains"
+      ".config/github-copilot"
       ".local/share/JetBrains"
       ".java/.userPrefs"
     ];
