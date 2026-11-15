@@ -8,6 +8,7 @@
       dconf
       i3
       lightdm
+      nvidia
       xdg
     ];
   };

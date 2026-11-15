@@ -1,5 +1,5 @@
 {
-  flake.modules.nixos.temp-nvidia =
+  flake.modules.nixos.nvidia =
     {
       config,
       lib,
@@ -7,15 +7,6 @@
       ...
     }:
     {
-      # Allow use of NVIDIA packages as unfree software
-      nixpkgs.config.allowUnfreePredicate =
-        pkg:
-        builtins.elem (lib.getName pkg) [
-          "nvidia-x11"
-          "nvidia-settings"
-          "nvidia-kernel-modules"
-        ];
-
       # Enable OpenGL
       hardware.graphics = {
         enable = true;
@@ -46,9 +37,7 @@
         # Configure NVIDIA Optimus PRIME
         prime = {
           # Allow offloading
-          #offload.enable = false;
-
-          sync.enable = true;
+          offload.enable = false;
 
           # Refer device bus ID values (see with `lspci`)
           intelBusId = "PCI:0@0:2:0";

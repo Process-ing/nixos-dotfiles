@@ -24,6 +24,9 @@
         "firefox-esr-140-bin-unwrapped" # Needed for Zotero
         "intellij-idea"
         "intellij-idea-with-plugins"
+        "nvidia-x11"
+        "nvidia-settings"
+        "nvidia-kernel-modules"
         "slack"
         "vscode"
       ];
