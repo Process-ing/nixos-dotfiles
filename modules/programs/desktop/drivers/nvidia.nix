@@ -8,16 +8,11 @@
     }:
     {
       # Enable OpenGL
-      hardware.graphics = {
-        enable = true;
-      };
+      hardware.graphics.enable = true;
 
       # Load NVIDIA drivers
-      services.xserver.videoDrivers = [
-        "modesetting" # Needed for PRIME offloading
-        "nvidia"
-      ];
-
+      services.xserver.videoDrivers = [ "nvidia" ];
+     
       hardware.nvidia = {
         modesetting.enable = true;
 
@@ -26,18 +21,18 @@
         powerManagement.enable = false;
 
         # Enables open source kernel module usage
-        open = true;
+        open = false;
 
-        # Enable NVIDIA settings menu (with `nvidia-settings`)
         nvidiaSettings = true;
-
-        # Select driver version
         package = config.boot.kernelPackages.nvidiaPackages.stable;
 
         # Configure NVIDIA Optimus PRIME
         prime = {
           # Allow offloading
-          offload.enable = false;
+          offload = {
+            enable = true;
+            enableOffloadCmd = true;
+          };
 
           # Refer device bus ID values (see with `lspci`)
           intelBusId = "PCI:0@0:2:0";
