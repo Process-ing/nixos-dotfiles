@@ -162,7 +162,7 @@
           #       rate = "60.00";
           #     };
           #   };
-          };
+          # };
         };
 
         # Configure post-switch hooks
