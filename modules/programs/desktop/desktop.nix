@@ -23,6 +23,7 @@
       gtk
       i3
       kitty
+      mindustry
       nemo
       pavucontrol
       picom
