@@ -8,6 +8,7 @@
       "sapienza"
       "specs"
       "staging"
+      "ni"
     ];
   };
 }
