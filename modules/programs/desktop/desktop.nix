@@ -21,6 +21,7 @@
       chromium
       dconf
       distrobox-path
+      flameshot
       gtk
       i3
       kitty

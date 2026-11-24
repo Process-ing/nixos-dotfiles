@@ -53,6 +53,9 @@
             "XF86AudioNext" = "exec --no-startup-id ${pkgs.playerctl}/bin/playerctl next";
             "XF86AudioPrev" = "exec --no-startup-id ${pkgs.playerctl}/bin/playerctl previous";
 
+            # Screenshot
+            "Print" = "exec --no-startup-id ${pkgs.flameshot}/bin/flameshot gui";
+
             # Power button
             # "XF86PowerOff" = "exec systemctl suspend";
           };
