@@ -7,6 +7,7 @@
       borg-laptop
       distrobox
       gnome-keyring
+      gvfs
       logind
       network-powersaving
       pipewire
