@@ -2,6 +2,7 @@
 
 {
   flake.modules.nixos.nix-store = { lib, ... }: {
+    imports = with self.modules.nixos; [ nix-unfree ];
 
     # Register NixOS overlays
     nixpkgs.overlays = [ self.overlays.default ];
@@ -15,21 +16,6 @@
       dates = "daily";
       options = "--delete-older-than 14d";
     };
-
-    # Whitelist unfree packages
-    nixpkgs.config.allowUnfreePredicate =
-      pkg:
-      builtins.elem (lib.getName pkg) [
-        "code"
-        "firefox-esr-140-bin-unwrapped" # Needed for Zotero
-        "intellij-idea"
-        "intellij-idea-with-plugins"
-        "nvidia-x11"
-        "nvidia-settings"
-        "nvidia-kernel-modules"
-        "slack"
-        "vscode"
-      ];
 
     # Whitelist insecure packages
     nixpkgs.config.permittedInsecurePackages = [
