@@ -20,6 +20,7 @@
       catppuccin
       chromium
       dconf
+      discord
       distrobox-path
       flameshot
       gtk

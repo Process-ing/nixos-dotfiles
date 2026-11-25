@@ -5,6 +5,8 @@
       pkg:
       builtins.elem (lib.getName pkg) [
         "code"
+        "discord"
+        "discord-unwrapped"
         "firefox-esr-140-bin-unwrapped" # Needed for Zotero
         "intellij-idea"
         "intellij-idea-with-plugins"
